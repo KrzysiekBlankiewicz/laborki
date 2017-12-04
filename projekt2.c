@@ -126,26 +126,40 @@ void fillWithLight(GtkWidget *button)
         if(help == 1) break;
     }
 
-    //printf("%d %d\n", v, q);
-
     for(int i = v+1; i < 8; i++)
     {
         if(gtk_widget_get_name(przycisk[i][q])[0] == 'X') break;
+        if(gtk_button_get_label(GTK_BUTTON(przycisk[i][q]))[0] == '+')
+        {
+            gtk_widget_set_name(przycisk[i][q], "double");
+        }
         gtk_button_set_label(GTK_BUTTON(przycisk[i][q]), "+");
     }
     for(int i = v-1; i >= 0; i--)
     {
         if(gtk_widget_get_name(przycisk[i][q])[0] == 'X') break;
+        if(gtk_button_get_label(GTK_BUTTON(przycisk[i][q]))[0] == '+')
+        {
+            gtk_widget_set_name(przycisk[i][q], "double");
+        }
         gtk_button_set_label(GTK_BUTTON(przycisk[i][q]), "+");
     }
     for(int i = q+1; i < 8; i++)
     {
         if(gtk_widget_get_name(przycisk[v][i])[0] == 'X') break;
+        if(gtk_button_get_label(GTK_BUTTON(przycisk[v][i]))[0] == '+')
+        {
+            gtk_widget_set_name(przycisk[v][i], "double");
+        }
         gtk_button_set_label(GTK_BUTTON(przycisk[v][i]), "+");
     }
     for(int i = q-1; i >= 0; i--)
     {
         if(gtk_widget_get_name(przycisk[v][i])[0] == 'X') break;
+        if(gtk_button_get_label(GTK_BUTTON(przycisk[v][i]))[0] == '+')
+        {
+            gtk_widget_set_name(przycisk[v][i], "double");
+        }
         gtk_button_set_label(GTK_BUTTON(przycisk[v][i]), "+");
     }
 }
@@ -166,26 +180,44 @@ void fillWithDarkness(GtkWidget *button)
         if(help == 1) break;
     }
 
-    //printf("%d %d\n", v, q);
-
     for(int i = v+1; i < 8; i++)
     {
         if(gtk_widget_get_name(przycisk[i][q])[0] == 'X') break;
+        if(gtk_widget_get_name(przycisk[i][q])[0] == 'd')
+        {
+            gtk_widget_set_name(przycisk[i][q], " ");
+            continue;
+        }
         gtk_button_set_label(GTK_BUTTON(przycisk[i][q]), " ");
     }
     for(int i = v-1; i >= 0; i--)
     {
         if(gtk_widget_get_name(przycisk[i][q])[0] == 'X') break;
+        if(gtk_widget_get_name(przycisk[i][q])[0] == 'd')
+        {
+            gtk_widget_set_name(przycisk[i][q], " ");
+            continue;
+        }
         gtk_button_set_label(GTK_BUTTON(przycisk[i][q]), " ");
     }
     for(int i = q+1; i < 8; i++)
     {
         if(gtk_widget_get_name(przycisk[v][i])[0] == 'X') break;
+        if(gtk_widget_get_name(przycisk[v][i])[0] == 'd')
+        {
+            gtk_widget_set_name(przycisk[v][i], " ");
+            continue;
+        }
         gtk_button_set_label(GTK_BUTTON(przycisk[v][i]), " ");
     }
     for(int i = q-1; i >= 0; i--)
     {
         if(gtk_widget_get_name(przycisk[v][i])[0] == 'X') break;
+        if(gtk_widget_get_name(przycisk[v][i])[0] == 'd')
+        {
+            gtk_widget_set_name(przycisk[v][i], " ");
+            continue;
+        }
         gtk_button_set_label(GTK_BUTTON(przycisk[v][i]), " ");
     }
 }
@@ -235,7 +267,7 @@ void fillWithX(char board[8][8])
             {
                 przycisk[w][h] = gtk_label_new("X");
                 gtk_widget_set_name(przycisk[w][h], "X");
-                //if(rand()%3 > 0)
+                if(rand()%3 > 0)
                 {
                     if(countedStars[w][h] == 0) gtk_label_set_text(przycisk[w][h], "0");
                     if(countedStars[w][h] == 1) gtk_label_set_text(przycisk[w][h], "1");
@@ -392,6 +424,7 @@ int main (int argc, char *argv[])
         for(int j = 0; j < 8; j++)
         {
             if(board[i][j] != 'X') g_signal_connect(przycisk[i][j], "clicked", G_CALLBACK(pushed), NULL);
+            //g_signal_connect(przycisk[i][j], "clicked", G_CALLBACK(wcisk), NULL);
         }//for
     }//for
 
