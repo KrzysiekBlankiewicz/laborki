@@ -1,3 +1,6 @@
+//realizuje grę logiczną AKARI
+//wyślwietla planszę i pozwala grać
+//
 
 #include<gtk/gtk.h>
 #include<stdio.h>
@@ -5,11 +8,12 @@
 #include<stdlib.h>
 #include<math.h>
 
+char board[8][8];
 GtkWidget *przycisk[8][8];
 GtkWidget *table;
 int countedStars[8][8];
 
-void createBoard(char board[][8])
+void createBoard()//opróżnia tablice z syfu
 {
     int w = 0, h = 0; //w - width, h-height
     //*(*(board + 1) + 2) = '7';
@@ -24,45 +28,39 @@ void createBoard(char board[][8])
     }//for
 }//funkcja
 
-int lightOne(char board[][8], int x, int y)
+int lightOne(int x, int y)//zapala jedną żarówkę - tylko we wstępnej tablicy
 {
-    //printf("%d %d\n", x, y);
     if(board[x][y] == '+'|| board[x][y] == '*'|| board[x][y] == 'X') return 0;
-    for(int i = x+1; (i < 8) && (board[i][y] != 'X'); i++)
+    for(int i = x+1; (i < 8) && (board[i][y] != 'X'); i++)//oświetla pola w górę
     {
             board[i][y] = '+';
-            //printf("%d %d\n", i, y);
     }
-    for(int i = x-1; (i >=0) && (board[i][y] != 'X'); i--)
+    for(int i = x-1; (i >=0) && (board[i][y] != 'X'); i--)//oświetla pola w dół
     {
             board[i][y] = '+';
-            //printf("%d %d\n", i, y);
     }
-    for(int i = y+1; (i < 8)&&(board[x][i] != 'X'); i++)
+    for(int i = y+1; (i < 8)&&(board[x][i] != 'X'); i++)//oświetla pola w prawo
     {
             board[x][i] = '+';
-            //printf("%d %d\n", x, i);
     }
-    for(int i = y-1; (i >= 0)&& (board[x][i] != 'X'); i--)
+    for(int i = y-1; (i >= 0)&& (board[x][i] != 'X'); i--)//oświetla pola w lewo
     {
             board[x][i] = '+';
-            //printf("%d %d\n", x, i);
     }
     board[x][y] = '*';
-    //puts("\n");
     return 1;
 }
 
-int lightAll(char board[8][8])
+int lightAll()//zapala żarówki aż oświetli wszystko - we wstępnej tablicy
 {
     srand(time(NULL));
     int lightedBulbs = 0;//liczba zapalonych zarowek
     int darkFields = 1;
-    while(lightedBulbs < 6)
+    while(lightedBulbs < 6)//6 na dobry początek
     {
-        lightedBulbs += lightOne(board, rand()%8, rand()%8);
+        lightedBulbs += lightOne(rand()%8, rand()%8);
     }
-    do
+    do//teraz dalej aż do skutku
     {
         darkFields = 0;
         for(int j = 0; j < 64; j++)
@@ -70,14 +68,14 @@ int lightAll(char board[8][8])
             if(board[j/8][j%8] == ' ') darkFields++;
             //printf("%d ", darkFields);
         }
-        if(darkFields > 0){lightOne(board, rand()%8, rand()%8);}
+        if(darkFields > 0){lightOne(rand()%8, rand()%8);}
     }
     while(darkFields > 0);
 
     return 1;
 }
 
-int blocks(char board[][8])
+int blocks()//wstawia ściany do wstępnej tablicy
 {
     srand(time(NULL));
     for(int i = 0; i < 25; i++)
@@ -87,7 +85,7 @@ int blocks(char board[][8])
     return 1;
 }
 
-void countStars(char board[8][8])
+void countStars()//liczy ile żarówek jest dookoła każdej ściany i zapisuje w tablicy countedStars
 {
     int counter;
     for(int w = 0; w < 8; w++)
@@ -110,10 +108,10 @@ void countStars(char board[8][8])
 
 }
 
-void fillWithLight(GtkWidget *button)
+void fillWithLight(GtkWidget *button)//oświetla odpowiednie pola na planszy (tej ostatecznej) po wciśnięci button
 {
     int help = 0, v, q;//pomaga w wyjściu z pętli
-    for(v = 0; v < 8; v++)//szukam v, q będących współrzędnymi button
+    for(v = 0; v < 8; v++)//szukam v, q będących współrzędnymi button w tablicy przyciski
     {
         for(q = 0; q < 8; q++)
         {
@@ -126,7 +124,7 @@ void fillWithLight(GtkWidget *button)
         if(help == 1) break;
     }
 
-    for(int i = v+1; i < 8; i++)
+    for(int i = v+1; i < 8; i++)//oświetla w górę, kolejna w dół, itd...
     {
         if(gtk_widget_get_name(przycisk[i][q])[0] == 'X') break;
         if(gtk_button_get_label(GTK_BUTTON(przycisk[i][q]))[0] == '+')
@@ -164,7 +162,7 @@ void fillWithLight(GtkWidget *button)
     }
 }
 
-void fillWithDarkness(GtkWidget *button)
+void fillWithDarkness(GtkWidget *button)//zaciemnia po wygaszeniu (odkliknięciu) button
 {
     int help = 0, v, q;//pomaga w wyjściu z pętli
     for(v = 0; v < 8; v++)//szukam v, q będących współrzędnymi button
@@ -222,22 +220,22 @@ void fillWithDarkness(GtkWidget *button)
     }
 }
 
-void pushed(GtkButton *widget)
+void pushed(GtkButton *widget)//gdy przyciski zostały wciśnięte
 {
     const gchar *text = gtk_button_get_label (widget);
-    if(text[0] == '+')
+    if(text[0] == '+')//blokuje możliwośc oświetlenia żarówki
     {
         gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(widget), FALSE);
         return;
     }
 
-    if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(widget)))
+    if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(widget)))//zapala żarówkę
     {
         gtk_button_set_label(GTK_BUTTON(widget), "*");
         gtk_widget_set_name(GTK_WIDGET(widget), "star");
         fillWithLight(GTK_WIDGET(widget));
     }
-    else
+    else//gasi żarówkę
     {
         gtk_button_set_label(GTK_BUTTON(widget), " ");
         gtk_widget_set_name(GTK_WIDGET(widget), " ");
@@ -245,7 +243,7 @@ void pushed(GtkButton *widget)
     }
 }
 
-void fillWithX(char board[8][8])
+void fillWithX()//zapełnia planszę (tę ostateczną) na podstawie wstepnej tablicy
 {
     srand(time(NULL));
     int w = 0, h = 0;
@@ -262,10 +260,10 @@ void fillWithX(char board[8][8])
     {
         for(h = 0; h < 8; h++)
         {
-            //if(board[w][h]=='*') przycisk[w][h] = gtk_toggle_button_new_with_label ("*");
+            //if(board[w][h]=='*') przycisk[w][h] = gtk_toggle_button_new_with_label ("*");//pozwala wyświetlić przykładowe rozwiązanie
             if(board[w][h]=='X')
             {
-                przycisk[w][h] = gtk_label_new("X");
+                przycisk[w][h] = gtk_label_new(" ");
                 gtk_widget_set_name(przycisk[w][h], "X");
                 if(rand()%3 > 0)
                 {
@@ -274,9 +272,8 @@ void fillWithX(char board[8][8])
                     if(countedStars[w][h] == 2) gtk_label_set_text(przycisk[w][h], "2");
                     if(countedStars[w][h] == 3) gtk_label_set_text(przycisk[w][h], "3");
                     if(countedStars[w][h] == 4) gtk_label_set_text(przycisk[w][h], "4");
-                }
-            }
-            //if(board[w][h]=='+') przycisk[w][h] = gtk_toggle_button_new_with_label ("+");
+                }//if
+            }//if
         }//for
     }//for
 
@@ -290,7 +287,7 @@ void fillWithX(char board[8][8])
 }
 
 
-void clear(GtkButton *widget, char board[8][8])
+void clear(GtkButton *widget)//czyści całą planszę
 {
     int w, h;
     GdkColor color;
@@ -314,7 +311,7 @@ void clear(GtkButton *widget, char board[8][8])
     }//for
 }
 
-void fatality(gpointer okno)
+void fatality(gpointer okno)//przegrana
 {
     GtkWidget *dialog;
     dialog = gtk_message_dialog_new(GTK_WINDOW(okno), GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, "Niestety...");
@@ -323,7 +320,7 @@ void fatality(gpointer okno)
     gtk_widget_destroy(dialog);
 }
 
-void great(gpointer okno)
+void great(gpointer okno)//wygrana
 {
     GtkWidget *dialog;
     dialog = gtk_message_dialog_new(GTK_WINDOW(okno), GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_OTHER, GTK_BUTTONS_OK, "Brawo!");
@@ -333,24 +330,21 @@ void great(gpointer okno)
     gtk_main_quit();
 }
 
-void check(GtkWidget *something, GtkWidget *okno)
+void check(GtkWidget *something, GtkWidget *okno)//sprawdza poprawność rozwiązania
 {
     int w, h, counter = 0;
     for(w = 0; w < 8; w++)//dopisuje X gdzie trzeba
     {
         for(h = 0; h < 8; h++)
         {
-            if(gtk_widget_get_name(przycisk[w][h])[0] == 'X')
+            if(gtk_widget_get_name(przycisk[w][h])[0] == 'X' && gtk_label_get_text(przycisk[w][h])[0] != ' ')//dla jednej ściany sprawdza czy ilość żaróweksię zgadza
             {
                     counter = 0;
-                    //if((gtk_widget_get_name(przycisk[w-1][h-1])[0] == 's') && (w != 0) && (h != 0)) counter++;
                     if((w != 0)&&(gtk_widget_get_name(przycisk[w-1][h])[0] == 's')) counter++;
-                    //if((gtk_widget_get_name(przycisk[w-1][h+1])[0] == 's') && (w != 0) && (h != 7)) counter++;
                     if((h != 0)&&(gtk_widget_get_name(przycisk[w][h-1])[0] == 's')) counter++;
                     if((h != 7)&&(gtk_widget_get_name(przycisk[w][h+1])[0] == 's')) counter++;
-                    //if((gtk_widget_get_name(przycisk[w+1][h-1])[0] == 's') && (w != 7) && (h != 0)) counter++;
                     if((w != 7)&&(gtk_widget_get_name(przycisk[w+1][h])[0] == 's')) counter++;
-                    //if((gtk_widget_get_name(przycisk[w+1][h+1])[0] == 's') && (w != 7) && (h != 7)) counter++;
+
                     if(counter == countedStars[w][h])
                     {
                         GdkColor color;
@@ -377,20 +371,29 @@ void end(GtkWidget *something)
     gtk_main_quit();
 }
 
+void rules(GtkWidget * anything, gpointer okno)
+{
+    GtkWidget *dialog;
+    dialog = gtk_message_dialog_new(GTK_WINDOW(okno), GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_OTHER, GTK_BUTTONS_OK, "Podświetl wszystkie wyszczególnione pola zapalając żarówki.\n Zapalona żarówka świeci na 4 strony.\n Światło nie przechodzi przez ściany. Żarówki nie mogą oświetlać się nawzajem.\n Na niektórych ścianach są cyfry. Po ich 4 stronach musi znajdować się tyle żarówek ile stanowi cyfra.\n Powodzenia!");
+    gtk_window_set_title(GTK_WINDOW(dialog), "Zasady");
+    gtk_dialog_run(GTK_DIALOG(dialog));
+    gtk_widget_destroy(dialog);
+}
 
 int main (int argc, char *argv[])
 {
-    char board[8][8];//createBoard(board);
+    int difficulty = 1;
 
-    createBoard(board);
-    blocks(board);
-    lightAll(board);
-    countStars(board);
+    createBoard();
+    blocks();
+    lightAll();
+    countStars();
 
     GtkWidget *okno;
     GtkWidget *kontener1;
     GtkWidget *kontener2;
     GtkWidget *kontener3;
+    GtkWidget *kontener4;
     GtkWidget *boks;
 
     gtk_init (&argc, &argv);
@@ -405,26 +408,30 @@ int main (int argc, char *argv[])
     kontener1 = gtk_button_new_with_label("Sprawdzam");
     kontener2 = gtk_button_new_with_label("Wyczyść");
     kontener3 = gtk_button_new_with_label("Zakończ");
+    kontener4 = gtk_button_new_with_label("Poproszę o zasady");
 
-    fillWithX(board);
+
+    fillWithX();
 
     gtk_container_add(GTK_CONTAINER(boks), table);
     gtk_container_add(GTK_CONTAINER(boks), kontener1);
     gtk_container_add(GTK_CONTAINER(boks), kontener2);
     gtk_container_add(GTK_CONTAINER(boks), kontener3);
+    gtk_container_add(GTK_CONTAINER(boks), kontener4);
     gtk_container_add(GTK_CONTAINER(okno), boks);
 
     g_signal_connect(G_OBJECT(okno), "destroy", G_CALLBACK(gtk_main_quit), NULL);
-    g_signal_connect(kontener2, "clicked", G_CALLBACK(clear), board);
+    g_signal_connect(kontener2, "clicked", G_CALLBACK(clear), NULL);
     g_signal_connect(kontener1, "clicked", G_CALLBACK(check), okno);
     g_signal_connect(kontener3, "clicked", G_CALLBACK(end), okno);
+    g_signal_connect(kontener4, "clicked", G_CALLBACK(rules), okno);
+
 
     for(int i = 0; i < 8; i++)
     {
         for(int j = 0; j < 8; j++)
         {
             if(board[i][j] != 'X') g_signal_connect(przycisk[i][j], "clicked", G_CALLBACK(pushed), NULL);
-            //g_signal_connect(przycisk[i][j], "clicked", G_CALLBACK(wcisk), NULL);
         }//for
     }//for
 
