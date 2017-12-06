@@ -399,7 +399,7 @@ int main (int argc, char *argv[])
     gtk_init (&argc, &argv);
 
     okno = gtk_window_new (GTK_WINDOW_TOPLEVEL);
-    gtk_window_set_default_size (GTK_WINDOW(okno), 300, 200);
+    gtk_window_set_default_size (GTK_WINDOW(okno), 400, 300);
     gtk_window_set_position(GTK_WINDOW(okno), GTK_WIN_POS_CENTER);// ustawia okno na środku
     gtk_window_set_title(GTK_WINDOW(okno), "AKARI"); //zmienia tytuł okna
 
