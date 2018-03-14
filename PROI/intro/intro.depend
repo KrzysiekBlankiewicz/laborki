@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1520414545 source:/home/mion/s/196/kblankie/PROI/intro/class.cpp
+	<iostream>
+	"class.h"
+
+1520414512 /home/mion/s/196/kblankie/PROI/intro/class.h
+	<iostream>
+
+1520414570 source:/home/mion/s/196/kblankie/PROI/intro/intro.cpp
+	<iostream>
+	"class.h"
+

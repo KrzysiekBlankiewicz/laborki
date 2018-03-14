@@ -1,0 +1,21 @@
+# depslib dependency file v1.0
+1520418629 source:/home/mion/s/196/kblankie/PROI/bigNumbers/newInt.cpp
+	<iostream>
+	"newInt.h"
+
+1520418528 source:/home/mion/s/196/kblankie/PROI/bigNumbers/bigNumbers.cpp
+	<iostream>
+	"newInt.h"
+
+1521019682 /home/mion/s/196/kblankie/PROI/bigNumbers/newInt.h
+
+1521023383 source:/home/mion/s/196/kblankie/laborki/PROI/bigNumbers/bigNumbers.cpp
+	<iostream>
+	"newInt.h"
+
+1521022959 /home/mion/s/196/kblankie/laborki/PROI/bigNumbers/newInt.h
+
+1521023354 source:/home/mion/s/196/kblankie/laborki/PROI/bigNumbers/newInt.cpp
+	<iostream>
+	"newInt.h"
+
