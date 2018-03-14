@@ -5,6 +5,7 @@ const int N = 10;
 
 class bigInt{
     unsigned char tab[N];
+    bool invalid;
 public:
     bigInt();
     //bigInt(int input[N]);
@@ -14,7 +15,7 @@ public:
     unsigned char getPosition(int i);
     void print();
 
-    //bigInt operator+(bigInt y);
+    bigInt operator+(bigInt y);
 };
 
 

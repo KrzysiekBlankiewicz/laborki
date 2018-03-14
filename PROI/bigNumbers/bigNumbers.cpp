@@ -5,9 +5,11 @@ using namespace std;
 
 int main()
 {
-    bigInt x {3356};
-    bigInt y {36739};
+    bigInt x = bigInt(523356), z;
+    bigInt y = bigInt(787684);
     x.print();
-    //y.print();
-    cout << (int)x.getPosition(5);
+    y.print();
+    z = x + y;
+    z.print();
+    cout << (int)z.getPosition(6);
 }
