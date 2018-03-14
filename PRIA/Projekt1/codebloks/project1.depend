@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1510156133 source:/home/mion/s/196/kblankie/Desktop/project1/sinus.c
+	<stdio.h>
+	<math.h>
+
