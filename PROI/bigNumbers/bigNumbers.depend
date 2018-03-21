@@ -9,15 +9,17 @@
 
 1521019682 /home/mion/s/196/kblankie/PROI/bigNumbers/newInt.h
 
-1521023383 source:/home/mion/s/196/kblankie/laborki/PROI/bigNumbers/bigNumbers.cpp
+1521624865 source:/home/mion/s/196/kblankie/laborki/PROI/bigNumbers/bigNumbers.cpp
 	<iostream>
 	"newInt.h"
 
-1521022959 /home/mion/s/196/kblankie/laborki/PROI/bigNumbers/newInt.h
+1521624865 /home/mion/s/196/kblankie/laborki/PROI/bigNumbers/newInt.h
 
-1521023354 source:/home/mion/s/196/kblankie/laborki/PROI/bigNumbers/newInt.cpp
+1521625535 source:/home/mion/s/196/kblankie/laborki/PROI/bigNumbers/newInt.cpp
 	<iostream>
 	"newInt.h"
+	<string>
+	<cmath>
 
 1521065823 source:/home/user/Dokumenty/programowanie/laborki/PROI/bigNumbers/bigNumbers.cpp
 	<iostream>

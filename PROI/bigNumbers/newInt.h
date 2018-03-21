@@ -6,6 +6,7 @@ const int N = 10;
 class bigInt{
     unsigned char tab[N];
     bool invalid;
+    int sgn;
 public:
     bigInt();
     //bigInt(int input[N]);
