@@ -17,6 +17,9 @@ public:
     void print();
 
     bigInt operator+(bigInt y);
+    bool operator>(bigInt y);
+    bool operator==(bigInt y);
+    bool operator<(bigInt y);
 };
 
 

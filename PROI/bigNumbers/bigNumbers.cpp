@@ -5,11 +5,15 @@ using namespace std;
 
 int main()
 {
-    bigInt x = bigInt(523356), z;
-    bigInt y = bigInt(787684);
+    cout << bool(true + 1);
+    bigInt x = bigInt(13396), z;
+    bigInt y = bigInt(7584);
     x.print();
     y.print();
+    if(x > y) cout << "wiekszy" << endl;
+    else cout << "mniejszy" << endl;
+    if(x < y) cout << "mniejszy" << endl;
+    else cout << "wiekszy" << endl;
     z = x + y;
     z.print();
-    cout << (int)z.getPosition(6);
 }
