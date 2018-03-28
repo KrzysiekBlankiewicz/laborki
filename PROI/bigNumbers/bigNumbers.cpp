@@ -7,16 +7,17 @@ using namespace std;
 int main()
 {
     //int tablica[10] = {4, 4, 5, 5, 7, 4 ,4, 4,4, 5};
-    /*bigInt x = bigInt(2), z;
-    bigInt y = bigInt(2);
-    x.print();
-    y.print();
-    z = x + y;
-    z.print();*/
+    bigInt a = bigInt(8), c;
+    bigInt b = bigInt(9);
+    a.print();
+    b.print();
+    c = a * b;
+    c.print();
+
     bigInt x, y,z;
     string mode, numberStr1, numberStr2;
     int numberInt1, numberInt2;
-    cout<< "Hello World" << endl << "Umiem trzymać duże liczby i je dodawać/odejmować."<< endl << "Wynierz tryb wprowadzania  int/string. I 2 liczby." << endl;
+    cout<< "Hello World" << endl << "Umiem trzymać duże liczby i je dodawać/odejmować/mnożyć."<< endl << "Wynierz tryb wprowadzania  int/string, i 2 liczby." << endl;
     cin >> mode;
     if(mode == "int"){
         cin >> numberInt1 >> numberInt2;
@@ -35,5 +36,8 @@ int main()
     z.print();
     cout << "odjęte - ";
     z = x-y;
+    z.print();
+    cout << "pomnożone - ";
+    z = x*y;
     z.print();
 }

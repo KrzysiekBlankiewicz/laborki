@@ -68,7 +68,6 @@ void bigInt::print()
 {
     if(invalid == true){
         cout << "Ta liczba może być ułomna, ale proszę bardzo..." << endl;
-        return;
     }
     for(int i = 0; i < N; i++){
         cout << tab[i] << " ";
@@ -183,17 +182,17 @@ bigInt bigInt::operator-(bigInt y)
     return (*this + y);
 }
 
-/*bigInt bigInt::operator*(bigInt y)
+bigInt bigInt::operator*(bigInt y)
 {
-    bigInt product;
+    int d = 0;
+    bigInt product = bigInt(0);
     for(int i = N-1; i >= 0; i--){
-        cout << ((int)tab[i] - 48) * pow(10, N - 1 - i) << endl;
         for(int j = ((int)tab[i] - 48) * pow(10, N - 1 - i); j > 0; j--){
-            product = product + *this;
+            product = product + y;
         }
     }
     return product;
-}*/
+}
 
 void bigInt::operator=(bigInt y)
 {

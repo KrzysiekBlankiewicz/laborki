@@ -21,14 +21,14 @@
 	<string>
 	<cmath>
 
-1522191740 source:/home/user/Dokumenty/programowanie/laborki/PROI/bigNumbers/bigNumbers.cpp
+1522195127 source:/home/user/Dokumenty/programowanie/laborki/PROI/bigNumbers/bigNumbers.cpp
 	<iostream>
 	"newInt.h"
 	<math.h>
 
 1522188176 /home/user/Dokumenty/programowanie/laborki/PROI/bigNumbers/newInt.h
 
-1522191158 source:/home/user/Dokumenty/programowanie/laborki/PROI/bigNumbers/newInt.cpp
+1522195157 source:/home/user/Dokumenty/programowanie/laborki/PROI/bigNumbers/newInt.cpp
 	<iostream>
 	"newInt.h"
 	<string>
