@@ -8,11 +8,13 @@ struct BasketList
 {
 	Basket* basket;
 	BasketList* next;
+	
+	
 };
 
 struct SpendingShedule
 {
-	string category;
+	std::string category;
 	double money;
 };
 #endif

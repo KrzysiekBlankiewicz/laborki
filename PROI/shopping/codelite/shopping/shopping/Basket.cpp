@@ -3,7 +3,16 @@
 
 using namespace std;
 
-    //Product* get_product();
+	Basket::Basket(Product* pro_duct)// roboczy
+	{
+		product = pro_duct;
+		price = 2;
+		amount = 3;
+	}
+    Product* Basket::getProduct()
+	{
+		return product;
+	}
     double Basket::getPrice()
 	{
 		return price;

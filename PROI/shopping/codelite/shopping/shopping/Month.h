@@ -11,9 +11,9 @@ class Month
 	int year;
 	monthName name;
 	int spentInMonth;
-	vector<SpendingShedule> spentForCateg;
+	std::vector<SpendingShedule> spentForCateg;
 public:
-
+	Month();
 };
 
 

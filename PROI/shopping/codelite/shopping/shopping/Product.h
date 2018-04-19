@@ -11,6 +11,7 @@ class Product
 	std::string myShop;
 	double myPrice;
 public:
+	Product(std::string na_me);
     double getMyPrice();
 	std::string getMyShop();
     std::string getName();

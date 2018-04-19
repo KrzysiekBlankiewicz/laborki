@@ -100,6 +100,7 @@
     </Configuration>
   </Settings>
   <VirtualDirectory Name="include">
+    <File Name="FIle.h"/>
     <File Name="Basket.h"/>
     <File Name="Product.h"/>
     <File Name="Purchase.h"/>
@@ -107,9 +108,10 @@
     <File Name="structures.h"/>
   </VirtualDirectory>
   <VirtualDirectory Name="src">
+    <File Name="Month.cpp"/>
+    <File Name="Purchase.cpp"/>
     <File Name="Basket.cpp"/>
     <File Name="main.cpp"/>
     <File Name="Product.cpp"/>
-    <File Name="Month.cpp"/>
   </VirtualDirectory>
 </CodeLite_Project>

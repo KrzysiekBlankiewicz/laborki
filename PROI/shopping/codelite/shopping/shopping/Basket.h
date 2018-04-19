@@ -8,6 +8,7 @@ class Basket
     double price;
     int amount;
 public:
+	Basket(Product* pro_duct);
     Product* getProduct();
     double getPrice();
     int getAmount();

@@ -3,6 +3,10 @@
 
 using namespace std;
 
+Product::Product(string na_me)//roboczy
+{
+	name = na_me;
+}
 double Product::getMyPrice()
 {
 	return myPrice;

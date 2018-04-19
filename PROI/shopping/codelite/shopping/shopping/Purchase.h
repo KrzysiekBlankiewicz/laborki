@@ -1,6 +1,8 @@
 #ifndef PURCHASE_H
-#def PURCHASE_H
+#define PURCHASE_H
 #include<structures.h>
+#include<Month.h>
+#include<Basket.h>
 #include<string>
 
 class Purchase
@@ -10,8 +12,10 @@ class Purchase
 	Month* month;
 	double spentOnce;
 public:
-
-}
+	Purchase(BasketList* shopping_List);
+	void showPurchase();
+	void acceptPurchase();
+};
 
 
 
