@@ -1,0 +1,6 @@
+marchew 1 2
+d 4 5
+g 5 7
+d 3 3
+boczek 4 8
+

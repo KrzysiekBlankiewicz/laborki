@@ -8,11 +8,11 @@
 class Purchase
 {
 	std::string shop;
-	BasketList* shoppingList;
-	Month* month;
+	Basket* basket;
+	//Month* month;
 	double spentOnce;
 public:
-	Purchase(BasketList* shopping_List);
+	Purchase(Basket* bas_ket, std::string sh_op = "-");
 	void showPurchase();
 	void acceptPurchase();
 };

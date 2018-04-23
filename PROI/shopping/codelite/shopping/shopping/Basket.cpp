@@ -3,11 +3,13 @@
 
 using namespace std;
 
-	Basket::Basket(Product* pro_duct)// roboczy
+	//Basket::Basket();
+	Basket::Basket(Product* pro_duct, double pri_ce, int amo_unt)// roboczy
 	{
 		product = pro_duct;
-		price = 2;
-		amount = 3;
+		price = pri_ce;
+		amount = amo_unt;
+		next = NULL;
 	}
     Product* Basket::getProduct()
 	{
@@ -21,7 +23,15 @@ using namespace std;
 	{
 		return amount;
 	}
-    int Basket::cashSpent()
+    double Basket::cashSpent()
 	{
 		return price*amount;
+	}
+	void Basket::setNext(Basket* ne_xt)
+	{
+		next = ne_xt;
+	}
+	Basket* Basket::getNext()
+	{
+		return next;
 	}
