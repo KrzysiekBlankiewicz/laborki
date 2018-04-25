@@ -3,7 +3,6 @@
 
 using namespace std;
 
-	//Basket::Basket();
 	Basket::Basket(Product* pro_duct, double pri_ce, int amo_unt)// roboczy
 	{
 		product = pro_duct;

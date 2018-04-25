@@ -1,6 +1,8 @@
 #ifndef BASKET_H
 #define BASKET_H
+
 #include<Product.h>
+#include<Category.h>
 
 class Basket
 {
@@ -9,8 +11,7 @@ class Basket
     int amount;
 	Basket* next; // można tworzyć listy basketów
 public:
-	Basket();
-	Basket(Product* pro_duct, double pri_ce, int amo_unt);
+	Basket(Product* pro_duct, double pri_ce = 1, int amo_unt = 1);
     Product* getProduct();
     double getPrice();
     int getAmount();

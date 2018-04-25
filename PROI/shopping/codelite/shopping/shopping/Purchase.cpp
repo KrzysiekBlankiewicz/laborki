@@ -1,15 +1,20 @@
 #include<Purchase.h>
-#include<Month.h>
 #include<Product.h>
 #include<iostream>
 #include<string>
 
+
 using namespace std;
 
-Purchase::Purchase(Basket* bas_ket, string sh_op /* = "-" */)// Roboczy konstruktor, większość pól zeruje
+void Purchase::setMonth(Month* newMonth)
 {
-	shop = "";
-	//month = findMonth;
+	month = newMonth;
+}
+
+Purchase::Purchase(Basket* bas_ket, monthName mo_nth, string sh_op /* = "-" */)// Roboczy konstruktor, większość pól zeruje
+{
+	shop = sh_op;
+	month = Month::findMonth(mo_nth);
 	spentOnce = 0;
 	basket = bas_ket;
 }
@@ -17,7 +22,7 @@ Purchase::Purchase(Basket* bas_ket, string sh_op /* = "-" */)// Roboczy konstruk
 void Purchase::showPurchase()//wyświetla dotychczas wprowadzone
 {
 	Basket* currentBasket = basket;
-	cout<< "Kupowałeś w " << shop << endl;
+	cout<< "Kupowałeś w: " << shop << " w " << month->getName() << "." << month->getYear() << endl;
 	do{
 		cout<< currentBasket->getProduct()->getName() << " " << currentBasket->cashSpent()<< endl;
 		currentBasket = currentBasket->getNext();
@@ -26,8 +31,18 @@ void Purchase::showPurchase()//wyświetla dotychczas wprowadzone
 void Purchase::acceptPurchase() // zapisuje do innych klas dane  z tych zakupów
 {
 	Basket* currentBasket = basket;
+	double spentForBasket;
 	while(currentBasket != NULL){
-		currentBasket->getProduct()->addSpending(currentBasket->cashSpent());
+		spentForBasket = currentBasket->cashSpent();
+		currentBasket->getProduct()->addSpending(spentForBasket);                		//zwiększam wydatki na ten produkt
+		if(currentBasket->getProduct()->getCategory() == NULL) cout << "null" << endl;
+		currentBasket->getProduct()->getCategory()->addSpending(spentForBasket); 		// zwiększam wydatki na tę kategorię
+		month->addSpending(spentForBasket);                                      		// zwiększam wydatki w tym miesiącu
+		month->addToSchedule(currentBasket->getProduct()->getCategory(), spentForBasket);//zwiększam wydatki na kategorię w miesiącu
+		if(currentBasket->getPrice() < currentBasket->getProduct()->getMyPrice()){
+			currentBasket->getProduct()->setMyShop(shop);                        // ustawiam nowy, lepszy sklep
+			currentBasket->getProduct()->setMyPrice(currentBasket->getPrice());  // ustawiam nową, lepszą cenę
+		}
 		currentBasket = currentBasket->getNext();
-	}
+	}	
 }

@@ -6,8 +6,9 @@
 
 struct SpendingShedule
 {
-	
-	std::string category;
+	Category* category;
 	double money;
+	
+	SpendingShedule(Category* cate_gory, double mon_ey = 0);
 };
 #endif

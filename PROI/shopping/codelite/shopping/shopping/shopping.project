@@ -100,6 +100,7 @@
     </Configuration>
   </Settings>
   <VirtualDirectory Name="include">
+    <File Name="Category.h"/>
     <File Name="FIle.h"/>
     <File Name="Basket.h"/>
     <File Name="Product.h"/>
@@ -108,6 +109,8 @@
     <File Name="structures.h"/>
   </VirtualDirectory>
   <VirtualDirectory Name="src">
+    <File Name="Category.cpp"/>
+    <File Name="structures.cpp"/>
     <File Name="Month.cpp"/>
     <File Name="Purchase.cpp"/>
     <File Name="Basket.cpp"/>

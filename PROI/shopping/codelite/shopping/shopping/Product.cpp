@@ -6,18 +6,25 @@ using namespace std;
 Product* Product::firstProduct = NULL;
 Product* Product::currentProduct = NULL;
 
-Product::Product(string na_me)//roboczy
+Product::Product(string na_me, Category* cate_gory)
 {
 	if(currentProduct != NULL){
 		name = na_me;
+		totalSpent = 0;
+		myPrice = HIPRICE;
+		myCategory = cate_gory;
 		currentProduct->next = this;
 		currentProduct = this;
 		next = NULL;
 	}
 	else{
 		name = na_me;
+		totalSpent = 0;
+		myPrice = HIPRICE;
+		myCategory = cate_gory;
 		currentProduct = this;
 		firstProduct = this;
+		next = NULL;
 	}
 }
 
@@ -33,18 +40,24 @@ string Product::getName()
 {
 	return name;
 }
-/*string Product::getCategory() //chwilowo działam bez kategorii
-{
-	return category;
-}*/
+Product* Product::getNext(){
+	return next;
+}
 double Product::getTotalSpent()
 {
 	return totalSpent;
 }
+
+Category* Product::getCategory()
+{
+	return myCategory;
+}
+
 void Product::addSpending(double spentOnce)
 {
 	totalSpent += spentOnce;
 }
+
 Product* Product::findProduct(string neededName)
 {
 	Product* currentProduct = Product::firstProduct;
@@ -55,3 +68,20 @@ Product* Product::findProduct(string neededName)
 	Product* newProduct= new Product(neededName);
 	return newProduct;
 }
+
+void Product::setMyShop(std::string newShop)
+{
+	myShop = newShop;
+}
+
+void Product::setMyPrice(double newPrice)
+{
+	myPrice = newPrice;
+}
+
+void Product::setCategory(Category* newCategory)
+{
+	myCategory = newCategory;
+}
+
+

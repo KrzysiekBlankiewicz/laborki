@@ -9,12 +9,13 @@ class Purchase
 {
 	std::string shop;
 	Basket* basket;
-	//Month* month;
+	Month* month;
 	double spentOnce;
 public:
-	Purchase(Basket* bas_ket, std::string sh_op = "-");
+	Purchase(Basket* bas_ket, monthName mo_nth, std::string sh_op = "-");
 	void showPurchase();
 	void acceptPurchase();
+	void setMonth(Month* newMonth);
 };
 
 
