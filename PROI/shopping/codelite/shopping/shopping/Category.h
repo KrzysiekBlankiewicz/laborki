@@ -17,6 +17,7 @@ public:
 	std::string getName();
 	static Category* findCategory(std::string neededName);
 	void addSpending(double additionalMoney);
+	Category* getNext();
 };
 
 #endif

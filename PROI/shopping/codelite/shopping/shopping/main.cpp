@@ -1,6 +1,6 @@
 // Krzysztof Blankiewicz
 // Główna pętla programu do kontroli wydatków
-// Na razie wprowadza z pliku test.txt i wypisuje zawartość jednych zakupów
+// 
 //
 
 #include<Basket.h>
@@ -49,23 +49,29 @@ int main ()
 	int basketsAmount;
 	monthName monthOfPurchase;
 	int yearOfPurchase;
-	string contin = "help", assistance;
+	
+	string contin = "help", assistance; //pomocnicze, potrzebne do cin-ów
+	int assistance1;					//pomocnicze, potrzebne do cin-ów
+	
 	while(contin != "koniec"){
 		if(contin == "help"){
 			cout << "-----------------------------------------------------" << endl;
 			cout << "Wprowadź...		 ...aby:" << endl;
 			cout << "	zakupy 			dodać nowy zakup" << endl;
-			cout << "	koniec 			zakończyć" << endl;
-			cout << "	zakupy 			dodać nowy zakup" << endl;
-			cout << "	zakupy 			dodać nowy zakup" << endl;
+			cout << "	koniec 			zako/ńczyć" << endl;
+			cout << "	pokaz_mies		wyświetlić wydatki według miesięcy" << endl;
+			cout << "	pokaz_kateg		wyświetlić wydatki według kategorii" << endl;
+			cout << "	pokaz_prod		wyświetlić wydatki według produktów" << endl;
+			cout << "	gdzie_kupić		sprawdzić gdzie opłaca się kupować" << endl;
+			cout << "	pokaz_rok		wyświetlić wydatki według lat" << endl;
 			cout << "-----------------------------------------------------" << endl;
 		}
 		if(contin == "zakupy"){
 			firstBasket.setNext(NULL);
 			basket1 = &firstBasket;
 			cout << "W formacie: Miesiąc Rok LiczbaProduktów " << endl;
-			cin >> /*monthOfPurchase >> yearOfPurchase >>*/ basketsAmount;
-			//zakup.setMonth(Month::findMonth(monthOfPurchase, yearOfPurchase));
+			cin >> monthOfPurchase >> yearOfPurchase >> basketsAmount;
+			zakup.setMonth(Month::findMonth(monthOfPurchase, yearOfPurchase));
 			cout << "Teraz po jednym: Nazwa Cena Ilość" << endl;
 			for(int i = 0; i < basketsAmount; i++){ // do wprowadzania basketów z cin
 				cin >> productName >> price >> amount;
@@ -79,13 +85,46 @@ int main ()
 				basket1 = basket2;
 			}
 			zakup.showPurchase();
-			cout << "Zaakceptować? ------( tak/nie )------" << endl;
+			cout << "Zaakceptować? ------( tak/cokolwiekinnego=nie )------" << endl;
 			cin >> assistance;
 			if(assistance == "tak")
 				zakup.acceptPurchase();
 		}
+		if(contin == "pokaz_kateg"){
+			Category* category = Category::firstCategory;
+			while(category != NULL){
+				cout << category->getName() << "  "<< category->getSpentForMe() << endl;
+				category = category->getNext();
+			}
+		}
+		if(contin == "pokaz_mies"){
+			Month* month = Month::firstMonth;
+			while(month != NULL){
+				cout << month->getName() << "  "<< month->getSpentInMonth() << endl;
+				month = month->getNext();
+			}
+		}
+		if(contin == "pokaz_prod"){
+			Product* product = Product::firstProduct;
+			while(product != NULL){
+				cout << product->getName() << "  "<< product->getTotalSpent() << endl;
+				product = product->getNext();
+			}
+		}
+		if(contin == "pokaz_rok"){
+			cout << "Który rok?" << endl;
+			cin >> assistance1;
+			cout << Month::spentInYear(assistance1) << endl;
+		}
+		if(contin == "gdzie_kupić"){
+			cout << "Jaki produkt?" << endl;
+			cin >> assistance;
+			if(Product::findProduct(assistance)->getMyShop() == "") cout << "Brakuje mi danych..." << endl;
+			else cout << "Najtaniej w '" << Product::findProduct(assistance)->getMyShop() << "'" << endl;
+		}		
 		cout << endl << "Słucham...";
 		cin >> contin;
+		cout << endl;
 	}
 	//cout << Product::findProduct("d")->getTotalSpent();
 	//cout << Product::findProduct("d")->getMyShop() <<  Product::findProduct("d")->getMyPrice();

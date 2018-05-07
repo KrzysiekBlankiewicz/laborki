@@ -22,13 +22,14 @@ Purchase::Purchase(Basket* bas_ket, monthName mo_nth, string sh_op /* = "-" */)/
 void Purchase::showPurchase()//wyświetla dotychczas wprowadzone
 {
 	Basket* currentBasket = basket;
-	cout<< "Kupowałeś w: " << shop << " w " << month->getName() << "." << month->getYear() << endl;
+	cout<< endl << "Kupowałeś w: " << shop << " w " << month->getName() << "." << month->getYear() << endl;
 	do{
-		cout<< currentBasket->getProduct()->getName() << " " << currentBasket->cashSpent()<< endl;
+		cout<< currentBasket->getProduct()->getName() << " (" << currentBasket->getProduct()->getCategory()->getName() << ") "<< currentBasket->cashSpent()<< endl;
 		currentBasket = currentBasket->getNext();
 	}while(currentBasket != NULL);
+
 }
-void Purchase::acceptPurchase() // zapisuje do innych klas dane  z tych zakupów
+void Purchase::acceptPurchase() // zapisuje do innych klas dane z tych zakupów
 {
 	Basket* currentBasket = basket;
 	double spentForBasket;

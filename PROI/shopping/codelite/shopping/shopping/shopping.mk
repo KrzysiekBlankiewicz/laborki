@@ -13,7 +13,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=krzys
-Date                   :=25/04/18
+Date                   :=07/05/18
 CodeLitePath           :=/home/user/.codelite
 LinkerName             :=g++
 SharedObjectLinkerName :=g++ -shared -fPIC
@@ -60,7 +60,7 @@ AS       := as
 ## User defined environment variables
 ##
 CodeLiteDir:=/usr/share/codelite
-Objects0=$(IntermediateDirectory)/structures.cpp$(ObjectSuffix) $(IntermediateDirectory)/Product.cpp$(ObjectSuffix) $(IntermediateDirectory)/Basket.cpp$(ObjectSuffix) $(IntermediateDirectory)/Category.cpp$(ObjectSuffix) $(IntermediateDirectory)/Month.cpp$(ObjectSuffix) $(IntermediateDirectory)/Purchase.cpp$(ObjectSuffix) $(IntermediateDirectory)/main.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/Purchase.cpp$(ObjectSuffix) $(IntermediateDirectory)/Product.cpp$(ObjectSuffix) $(IntermediateDirectory)/structures.cpp$(ObjectSuffix) $(IntermediateDirectory)/Basket.cpp$(ObjectSuffix) $(IntermediateDirectory)/Category.cpp$(ObjectSuffix) $(IntermediateDirectory)/Month.cpp$(ObjectSuffix) 
 
 
 
@@ -91,13 +91,21 @@ PreBuild:
 ##
 ## Objects
 ##
-$(IntermediateDirectory)/structures.cpp$(ObjectSuffix): structures.cpp $(IntermediateDirectory)/structures.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/user/Dokumenty/programowanie/laborki/PROI/shopping/codelite/shopping/shopping/structures.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/structures.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/structures.cpp$(DependSuffix): structures.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/structures.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/structures.cpp$(DependSuffix) -MM structures.cpp
+$(IntermediateDirectory)/main.cpp$(ObjectSuffix): main.cpp $(IntermediateDirectory)/main.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/user/Dokumenty/programowanie/laborki/PROI/shopping/codelite/shopping/shopping/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/main.cpp$(DependSuffix): main.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/main.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/main.cpp$(DependSuffix) -MM main.cpp
 
-$(IntermediateDirectory)/structures.cpp$(PreprocessSuffix): structures.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/structures.cpp$(PreprocessSuffix) structures.cpp
+$(IntermediateDirectory)/main.cpp$(PreprocessSuffix): main.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/main.cpp$(PreprocessSuffix) main.cpp
+
+$(IntermediateDirectory)/Purchase.cpp$(ObjectSuffix): Purchase.cpp $(IntermediateDirectory)/Purchase.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/user/Dokumenty/programowanie/laborki/PROI/shopping/codelite/shopping/shopping/Purchase.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Purchase.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/Purchase.cpp$(DependSuffix): Purchase.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Purchase.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Purchase.cpp$(DependSuffix) -MM Purchase.cpp
+
+$(IntermediateDirectory)/Purchase.cpp$(PreprocessSuffix): Purchase.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Purchase.cpp$(PreprocessSuffix) Purchase.cpp
 
 $(IntermediateDirectory)/Product.cpp$(ObjectSuffix): Product.cpp $(IntermediateDirectory)/Product.cpp$(DependSuffix)
 	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/user/Dokumenty/programowanie/laborki/PROI/shopping/codelite/shopping/shopping/Product.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Product.cpp$(ObjectSuffix) $(IncludePath)
@@ -106,6 +114,14 @@ $(IntermediateDirectory)/Product.cpp$(DependSuffix): Product.cpp
 
 $(IntermediateDirectory)/Product.cpp$(PreprocessSuffix): Product.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Product.cpp$(PreprocessSuffix) Product.cpp
+
+$(IntermediateDirectory)/structures.cpp$(ObjectSuffix): structures.cpp $(IntermediateDirectory)/structures.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/user/Dokumenty/programowanie/laborki/PROI/shopping/codelite/shopping/shopping/structures.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/structures.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/structures.cpp$(DependSuffix): structures.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/structures.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/structures.cpp$(DependSuffix) -MM structures.cpp
+
+$(IntermediateDirectory)/structures.cpp$(PreprocessSuffix): structures.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/structures.cpp$(PreprocessSuffix) structures.cpp
 
 $(IntermediateDirectory)/Basket.cpp$(ObjectSuffix): Basket.cpp $(IntermediateDirectory)/Basket.cpp$(DependSuffix)
 	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/user/Dokumenty/programowanie/laborki/PROI/shopping/codelite/shopping/shopping/Basket.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Basket.cpp$(ObjectSuffix) $(IncludePath)
@@ -130,22 +146,6 @@ $(IntermediateDirectory)/Month.cpp$(DependSuffix): Month.cpp
 
 $(IntermediateDirectory)/Month.cpp$(PreprocessSuffix): Month.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Month.cpp$(PreprocessSuffix) Month.cpp
-
-$(IntermediateDirectory)/Purchase.cpp$(ObjectSuffix): Purchase.cpp $(IntermediateDirectory)/Purchase.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/user/Dokumenty/programowanie/laborki/PROI/shopping/codelite/shopping/shopping/Purchase.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Purchase.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/Purchase.cpp$(DependSuffix): Purchase.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Purchase.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Purchase.cpp$(DependSuffix) -MM Purchase.cpp
-
-$(IntermediateDirectory)/Purchase.cpp$(PreprocessSuffix): Purchase.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Purchase.cpp$(PreprocessSuffix) Purchase.cpp
-
-$(IntermediateDirectory)/main.cpp$(ObjectSuffix): main.cpp $(IntermediateDirectory)/main.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/user/Dokumenty/programowanie/laborki/PROI/shopping/codelite/shopping/shopping/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/main.cpp$(DependSuffix): main.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/main.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/main.cpp$(DependSuffix) -MM main.cpp
-
-$(IntermediateDirectory)/main.cpp$(PreprocessSuffix): main.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/main.cpp$(PreprocessSuffix) main.cpp
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)

@@ -7,6 +7,14 @@ using namespace std;
 Month* Month::firstMonth = NULL;
 Month* Month::currentMonth = NULL;
 
+std::istream& operator>>( std::istream& is, monthName& i)
+{
+	int x;
+	std::cin >> x;
+	i = static_cast<monthName>(x);
+	return is;
+}
+
 Month::Month(monthName na_me, int ye_ar)//roboczy
 {
 	if(currentMonth != NULL){
@@ -34,6 +42,27 @@ monthName Month::getName()
 int Month::getYear()
 {	
 	return year;
+}
+
+double Month::getSpentInMonth()
+{
+	return spentInMonth;
+}
+
+Month* Month::getNext()
+{
+	return this->next;
+}
+
+double Month::spentInYear(int neededYear)
+{
+	Month* month = firstMonth;
+	double sum = 0;
+	while(month != NULL){
+		if(month->year == neededYear) sum += month->spentInMonth;
+		month = month->next;
+	}
+	return sum;
 }
 
 Month* Month::findMonth(monthName neededName, int neededYear)

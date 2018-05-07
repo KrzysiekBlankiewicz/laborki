@@ -50,3 +50,8 @@ void Category::addSpending(double additionalMoney)
 {
 	spentForMe += additionalMoney;
 }
+
+Category* Category::getNext()
+{
+	return this->next;
+}

@@ -1,1 +1,1 @@
-./Debug/structures.cpp.o ./Debug/Product.cpp.o ./Debug/Basket.cpp.o ./Debug/Category.cpp.o ./Debug/Month.cpp.o ./Debug/Purchase.cpp.o ./Debug/main.cpp.o
+./Debug/main.cpp.o ./Debug/Purchase.cpp.o ./Debug/Product.cpp.o ./Debug/structures.cpp.o ./Debug/Basket.cpp.o ./Debug/Category.cpp.o ./Debug/Month.cpp.o
