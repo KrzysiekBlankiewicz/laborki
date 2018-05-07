@@ -19,12 +19,12 @@ Purchase::Purchase(Basket* bas_ket, monthName mo_nth, string sh_op /* = "-" */)/
 	basket = bas_ket;
 }
 
-void Purchase::showPurchase()//wyświetla dotychczas wprowadzone
+void Purchase::showPurchase(ostream& os)//wyświetla dotychczas wprowadzone
 {
-	Basket* currentBasket = basket;
-	cout<< endl << "Kupowałeś w: " << shop << " w " << month->getName() << "." << month->getYear() << endl;
+	Basket* currentBasket = basket; 
+	os<< endl << "Kupowałeś w: " << shop << " w " << month->getName() << "." << month->getYear() << endl;
 	do{
-		cout<< currentBasket->getProduct()->getName() << " (" << currentBasket->getProduct()->getCategory()->getName() << ") "<< currentBasket->cashSpent()<< endl;
+		os<< currentBasket->getProduct()->getName() << " (" << currentBasket->getProduct()->getCategory()->getName() << ") "<< currentBasket->cashSpent()<< endl;
 		currentBasket = currentBasket->getNext();
 	}while(currentBasket != NULL);
 

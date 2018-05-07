@@ -84,7 +84,7 @@ int main ()
 				basket1->setNext(basket2);
 				basket1 = basket2;
 			}
-			zakup.showPurchase();
+			zakup.showPurchase(cout);
 			cout << "Zaakceptować? ------( tak/cokolwiekinnego=nie )------" << endl;
 			cin >> assistance;
 			if(assistance == "tak")

@@ -4,6 +4,7 @@
 #include<Month.h>
 #include<Basket.h>
 #include<string>
+#include<iostream>
 
 class Purchase
 {
@@ -13,7 +14,7 @@ class Purchase
 	double spentOnce;
 public:
 	Purchase(Basket* bas_ket, monthName mo_nth, std::string sh_op = "-");
-	void showPurchase();
+	void showPurchase(std::ostream& os);
 	void acceptPurchase();
 	void setMonth(Month* newMonth);
 };
