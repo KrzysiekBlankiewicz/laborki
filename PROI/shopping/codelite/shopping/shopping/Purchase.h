@@ -18,10 +18,10 @@ class Purchase
 	double spentOnce;
 public:
 	Purchase(Basket* bas_ket, monthName mo_nth, std::string sh_op = "-");
-	void showPurchase(std::ostream& os); 		//wypisuje zakup do strumienia
-	void acceptPurchase();						//wprowadza dane o zakupie do obiektow innych klas (Product, Category, Month)
+	void showPurchase(std::ostream& os) const; 		//wypisuje zakup do strumienia
+	void acceptPurchase() const;						//wprowadza dane o zakupie do obiektow innych klas (Product, Category, Month)
  	void setMonth(Month* newMonth);
-	void freeBaskets();
+	void freeBaskets() const;
 };
 
 

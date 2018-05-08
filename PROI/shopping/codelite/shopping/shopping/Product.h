@@ -26,15 +26,15 @@ public:
 	static Product* firstProduct;		//
 
 	Product(std::string na_me, Category* cate_gory = NULL);
-    double getMyPrice();
-	std::string getMyShop();
-    std::string getName();
-    Category* getCategory();
-	double getTotalSpent();
-	Product* getNext();
+    double getMyPrice() const;
+	std::string getMyShop() const;
+    std::string getName() const;
+    Category* getCategory() const;
+	double getTotalSpent() const;
+	Product* getNext()const;
 	
 	void addSpending(double spentOnce);
-	void showTotalSpent();
+	void showTotalSpent()const;
 	static Product* findProduct(std::string neededName);
 	void setMyShop(std::string newShop);
 	void setMyPrice(double newPrice);

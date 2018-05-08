@@ -28,27 +28,28 @@ Product::Product(string na_me, Category* cate_gory)
 	}
 }
 
-double Product::getMyPrice()
+double Product::getMyPrice() const
 {
 	return myPrice;
 }
-string Product::getMyShop()
+string Product::getMyShop() const
 {
 	return myShop;
 }
-string Product::getName()
+string Product::getName() const
 {
 	return name;
 }
-Product* Product::getNext(){
+Product* Product::getNext() const
+{
 	return next;
 }
-double Product::getTotalSpent()
+double Product::getTotalSpent() const
 {
 	return totalSpent;
 }
 
-Category* Product::getCategory()
+Category* Product::getCategory() const
 {
 	return myCategory;
 }

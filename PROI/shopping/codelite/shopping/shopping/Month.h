@@ -31,16 +31,16 @@ public:
 	static Month* currentMonth;		//
 	static double spentInYear(int neededYear);      //oblicza wydatki z roku
 	Month(monthName na_me, int ye_ar = THISYEAR);
-	monthName getName();
-	int getYear();
-	double getSpentInMonth();
-	Month* getNext();
+	monthName getName() const;
+	int getYear() const;
+	double getSpentInMonth() const;
+	Month* getNext() const;
 	static Month* findMonth(monthName neededName, int neededYear = THISYEAR);
 	void addSpending(double additionalMoney);		//dodaje po prostu
 	void addToSchedule(Category* category, double additionalMoney); //dodaje z uwzgl. kategorii
-	void showSpendings();							//wyswietla na konsoli wydatki z miesiaca kategoriami
+	void showSpendings() const;							//wyswietla na konsoli wydatki z miesiaca kategoriami
 	static void freeMonths();
-	void freeVector();
+	void freeVector() const;
 };
 
 #endif // MONTH_H

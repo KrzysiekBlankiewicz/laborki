@@ -35,21 +35,21 @@ Month::Month(monthName na_me, int ye_ar)//roboczy
 	}
 }
 
-monthName Month::getName()
+monthName Month::getName() const
 {	
 	return name;
 }
-int Month::getYear()
+int Month::getYear() const
 {	
 	return year;
 }
 
-double Month::getSpentInMonth()
+double Month::getSpentInMonth() const
 {
 	return spentInMonth;
 }
 
-Month* Month::getNext()
+Month* Month::getNext() const
 {
 	return this->next;
 }
@@ -94,7 +94,7 @@ void Month::addToSchedule(Category* category, double additionalMoney)
 	spentForCateg.push_back(newSpendingShedule);
 }
 
-void Month::showSpendings()
+void Month::showSpendings() const
 {
 	cout << name << "." << year << endl;
 	for(int i = 0; i < spentForCateg.size(); i++){
@@ -102,7 +102,7 @@ void Month::showSpendings()
 	}
 }
 
-void Month::freeVector()
+void Month::freeVector() const
 {
 	int x = spentForCateg.size();
 	for(int i = 0; i < spentForCateg.size(); i++)

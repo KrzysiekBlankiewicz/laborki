@@ -23,12 +23,12 @@ Category::Category(string na_me)
 	}
 }
 
-double Category::getSpentForMe()
+double Category::getSpentForMe() const
 {
 		return spentForMe;
 }
 
-string Category::getName()
+string Category::getName() const
 {
 	return name;
 }
@@ -51,7 +51,7 @@ void Category::addSpending(double additionalMoney)
 	spentForMe += additionalMoney;
 }
 
-Category* Category::getNext()
+Category* Category::getNext() const
 {
 	return this->next;
 }

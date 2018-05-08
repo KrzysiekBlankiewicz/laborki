@@ -19,11 +19,11 @@ public:
 	static Category* currentCategory;	//
 	
 	Category(std::string na_me);
-	double getSpentForMe();
-	std::string getName();
+	double getSpentForMe() const;
+	std::string getName() const;
 	static Category* findCategory(std::string neededName);
 	void addSpending(double additionalMoney);
-	Category* getNext();
+	Category* getNext() const;
 	static void freeCategory();
 };
 

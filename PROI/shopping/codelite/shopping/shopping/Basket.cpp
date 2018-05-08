@@ -10,19 +10,19 @@ using namespace std;
 		amount = amo_unt;
 		next = NULL;
 	}
-    Product* Basket::getProduct()
+    Product* Basket::getProduct() const
 	{
 		return product;
 	}
-    double Basket::getPrice()
+    double Basket::getPrice() const
 	{
 		return price;
 	}
-    int Basket::getAmount()
+    int Basket::getAmount() const
 	{
 		return amount;
 	}
-    double Basket::cashSpent()
+    double Basket::cashSpent() const
 	{
 		return price*amount;
 	}
@@ -30,7 +30,7 @@ using namespace std;
 	{
 		next = ne_xt;
 	}
-	Basket* Basket::getNext()
+	Basket* Basket::getNext() const
 	{
 		return next;
 	}

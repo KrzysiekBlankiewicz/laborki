@@ -19,12 +19,12 @@ class Basket
 	Basket* next; // można tworzyć listy basketów
 public:
 	Basket(Product* pro_duct, double pri_ce = 1, int amo_unt = 1);
-    Product* getProduct();
-    double getPrice();
-    int getAmount();
-    double cashSpent();
+    Product* getProduct() const;
+    double getPrice() const;
+    int getAmount() const;
+    double cashSpent() const;
 	void setNext(Basket* ne_xt);
-	Basket* getNext();
+	Basket* getNext() const;
 };
 
 

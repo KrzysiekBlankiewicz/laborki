@@ -20,7 +20,7 @@ Purchase::Purchase(Basket* bas_ket, monthName mo_nth, string sh_op /* = "-" */)/
 	basket = bas_ket;
 }
 
-void Purchase::showPurchase(ostream& os)//wyświetla dotychczas wprowadzone
+void Purchase::showPurchase(ostream& os) const//wyświetla dotychczas wprowadzone
 {
 	Basket* currentBasket = basket; 
 	os<< endl << "Kupowałeś w: '" << shop << "' w " << month->getName() << "." << month->getYear() << endl;
@@ -30,7 +30,7 @@ void Purchase::showPurchase(ostream& os)//wyświetla dotychczas wprowadzone
 	}while(currentBasket != NULL);
 
 }
-void Purchase::acceptPurchase() // zapisuje do innych klas dane z tych zakupów
+void Purchase::acceptPurchase() const // zapisuje do innych klas dane z tych zakupów
 {
 	Basket* currentBasket = basket;
 	double spentForBasket;
@@ -53,7 +53,7 @@ void Purchase::acceptPurchase() // zapisuje do innych klas dane z tych zakupów
 	plik.close();
 }
 
-void Purchase::freeBaskets()
+void Purchase::freeBaskets() const
 {
 	Basket* currentBasket = basket;
 	Basket* nextBasket;
