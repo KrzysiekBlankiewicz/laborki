@@ -1,3 +1,10 @@
+//Krzysztof Blankiewicz
+//Naglowki klasy Basket
+//Obiekt tej klasy reprezentuje jakiś jeden produkt wrzucony do koszyka.
+//Zawiera info. jaki to produkt i ile kosztowal.
+//Jest tworzony przy wprowadzaniu danych o zakupach.
+
+
 #ifndef BASKET_H
 #define BASKET_H
 

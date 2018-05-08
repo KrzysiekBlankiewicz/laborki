@@ -84,4 +84,13 @@ void Product::setCategory(Category* newCategory)
 	myCategory = newCategory;
 }
 
-
+void Product::freeProducts()
+{
+	Product* currentProduct = firstProduct;
+	Product* nextProduct;
+	while(currentProduct != NULL){
+		nextProduct = currentProduct->getNext();
+		delete currentProduct;
+		currentProduct = nextProduct;
+	}
+}

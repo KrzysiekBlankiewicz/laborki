@@ -1,7 +1,52 @@
-5
-marchew 1 2
-d 4 5
-g 5 7
-d 3 3
-boczek 4 8
+W każdych zakupach:
+*nazwa produktu* (*nazwa kategorii*) *wydana kwota*
 
+
+Kupowałeś w: 'domowy' w 1.1
+torebka (inne) 0
+
+Kupowałeś w: 'domowy' w 2.2000
+torebka (inne) 0
+s (w) 4
+s (w) 1
+d (f) 20
+
+Kupowałeś w: 'domowy' w 1.1
+torebka (inne) 0
+s (q) 6
+w (a) 12
+r (q) 16
+
+Kupowałeś w: 'domowy' w 1.1
+torebka (inne) 0
+w (d) 6
+
+Kupowałeś w: 'domowy' w 1.1
+torebka (inne) 0
+s (a) 4
+w (q) 1
+r (q) 12
+
+Kupowałeś w: 'domowy' w 1.1
+torebka (inne) 0
+w (q) 12
+s (a) 1
+e (a) 6
+
+Kupowałeś w: 'domowy' w 1.1
+torebka (inne) 0
+s (a) 6
+w (q) 1
+e (q) 12
+
+Kupowałeś w: 'domowy' w 1.1
+torebka (inne) 0
+s (a) 6
+q (w) 6
+e (q) 1
+
+Kupowałeś w: 'domowy' w 1.1
+torebka (inne) 0
+s (a) 6
+q (w) 1
+w (1) 12

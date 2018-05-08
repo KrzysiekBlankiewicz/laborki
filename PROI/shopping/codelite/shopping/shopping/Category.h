@@ -1,3 +1,9 @@
+//Krzysztof Blankiewicz
+//Naglowki klasy Category
+//Obiekt tej klasy reprezentuje kategorie
+//Zawiera dane o sklepie, w ktorym warto dany produkt kupowac, oraz ile wydalismy na niego w historii.
+//Jest tworzony jesli kategoria pojawi sie w zakupach.
+
 #ifndef CATEG_H
 #define CATEG_H
 
@@ -9,8 +15,8 @@ class Category
 	double spentForMe;
 	Category* next;
 public:	
-	static Category* firstCategory;
-	static Category* currentCategory;
+	static Category* firstCategory;		//potrzebne do findCategory
+	static Category* currentCategory;	//
 	
 	Category(std::string na_me);
 	double getSpentForMe();
@@ -18,6 +24,7 @@ public:
 	static Category* findCategory(std::string neededName);
 	void addSpending(double additionalMoney);
 	Category* getNext();
+	static void freeCategory();
 };
 
 #endif

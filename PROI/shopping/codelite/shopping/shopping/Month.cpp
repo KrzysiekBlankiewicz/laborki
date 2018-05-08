@@ -101,3 +101,22 @@ void Month::showSpendings()
 		cout << "  " << spentForCateg[i]->category->getName() << " " << spentForCateg[i]->money << endl;
 	}
 }
+
+void Month::freeVector()
+{
+	int x = spentForCateg.size();
+	for(int i = 0; i < spentForCateg.size(); i++)
+		delete spentForCateg[i];
+}
+
+void Month::freeMonths()
+{
+	Month* currentMonth = firstMonth;
+	Month* nextMonth;
+	while(currentMonth != NULL){
+		nextMonth = currentMonth->getNext();
+		delete currentMonth;
+		currentMonth->freeVector();
+		currentMonth = nextMonth;
+	}
+}

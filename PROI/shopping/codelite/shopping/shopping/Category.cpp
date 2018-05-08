@@ -55,3 +55,14 @@ Category* Category::getNext()
 {
 	return this->next;
 }
+
+void Category::freeCategory()
+{
+	Category* currentCategory = firstCategory;
+	Category* nextCategory;
+	while(currentCategory != NULL){
+		nextCategory = currentCategory->getNext();
+		delete currentCategory;
+		currentCategory = nextCategory;
+	}
+}

@@ -1,3 +1,9 @@
+//Krzysztof Blankiewicz
+//Naglowki klasy Month
+//Obiekt tej klasy reprezentuje miesiac. 
+//Jest tworzony jesli pojawia sie zakupy zrobione w tym miesiacu. 
+//Zawiera dane o kwotach wydanych w tym miesiacu.
+
 #ifndef MONTH_H
 #define MONTH_H
 
@@ -21,18 +27,20 @@ class Month
 	Month* next;
 	
 public:
-	static Month* firstMonth;
-	static Month* currentMonth;
-	static double spentInYear(int neededYear);
+	static Month* firstMonth;		//potrzebne do findMonth
+	static Month* currentMonth;		//
+	static double spentInYear(int neededYear);      //oblicza wydatki z roku
 	Month(monthName na_me, int ye_ar = THISYEAR);
 	monthName getName();
 	int getYear();
 	double getSpentInMonth();
 	Month* getNext();
 	static Month* findMonth(monthName neededName, int neededYear = THISYEAR);
-	void addSpending(double additionalMoney);
-	void addToSchedule(Category* category, double additionalMoney);
-	void showSpendings();
+	void addSpending(double additionalMoney);		//dodaje po prostu
+	void addToSchedule(Category* category, double additionalMoney); //dodaje z uwzgl. kategorii
+	void showSpendings();							//wyswietla na konsoli wydatki z miesiaca kategoriami
+	static void freeMonths();
+	void freeVector();
 };
 
 #endif // MONTH_H

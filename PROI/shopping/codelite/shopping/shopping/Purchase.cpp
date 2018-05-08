@@ -1,6 +1,7 @@
 #include<Purchase.h>
 #include<Product.h>
 #include<iostream>
+#include<fstream>
 #include<string>
 
 
@@ -22,7 +23,7 @@ Purchase::Purchase(Basket* bas_ket, monthName mo_nth, string sh_op /* = "-" */)/
 void Purchase::showPurchase(ostream& os)//wyświetla dotychczas wprowadzone
 {
 	Basket* currentBasket = basket; 
-	os<< endl << "Kupowałeś w: " << shop << " w " << month->getName() << "." << month->getYear() << endl;
+	os<< endl << "Kupowałeś w: '" << shop << "' w " << month->getName() << "." << month->getYear() << endl;
 	do{
 		os<< currentBasket->getProduct()->getName() << " (" << currentBasket->getProduct()->getCategory()->getName() << ") "<< currentBasket->cashSpent()<< endl;
 		currentBasket = currentBasket->getNext();
@@ -46,4 +47,19 @@ void Purchase::acceptPurchase() // zapisuje do innych klas dane z tych zakupów
 		}
 		currentBasket = currentBasket->getNext();
 	}	
+	fstream plik;
+	plik.open("test.txt", ios::app);
+	this->showPurchase(plik);
+	plik.close();
+}
+
+void Purchase::freeBaskets()
+{
+	Basket* currentBasket = basket;
+	Basket* nextBasket;
+	while(currentBasket != NULL){
+		nextBasket = currentBasket->getNext();
+		delete currentBasket;
+		currentBasket = nextBasket;
+	}
 }

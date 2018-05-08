@@ -101,7 +101,6 @@
   </Settings>
   <VirtualDirectory Name="include">
     <File Name="Category.h"/>
-    <File Name="FIle.h"/>
     <File Name="Basket.h"/>
     <File Name="Product.h"/>
     <File Name="Purchase.h"/>
