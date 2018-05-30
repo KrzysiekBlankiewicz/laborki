@@ -1,0 +1,1 @@
+./Debug/main.cpp.o ./Debug/Node.cpp.o ./Debug/Iterator.cpp.o ./Debug/Tree.cpp.o
