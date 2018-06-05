@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeLite_Workspace Name="PROI" Database="" Version="10.0.0">
+  <Project Name="Tree" Path="Tree/Tree.project" Active="Yes"/>
+  <Project Name="testy" Path="testy/testy.project" Active="No"/>
+  <BuildMatrix>
+    <WorkspaceConfiguration Name="Debug" Selected="yes">
+      <Environment/>
+      <Project Name="Tree" ConfigName="Debug"/>
+      <Project Name="testy" ConfigName="Debug"/>
+    </WorkspaceConfiguration>
+    <WorkspaceConfiguration Name="Release" Selected="yes">
+      <Environment/>
+      <Project Name="Tree" ConfigName="Release"/>
+      <Project Name="testy" ConfigName="Release"/>
+    </WorkspaceConfiguration>
+  </BuildMatrix>
+</CodeLite_Workspace>

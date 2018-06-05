@@ -1,0 +1,1 @@
+./Debug/test_szabl.cpp.o ./Debug/main.cpp.o
