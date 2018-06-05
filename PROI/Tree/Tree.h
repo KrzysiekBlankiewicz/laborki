@@ -6,7 +6,7 @@
 #include <vector>
 #include <math.h>
 #include <iomanip>
-#include"Node.h"
+#include "Node.h"
 #include "exeptions.h"
 
 
@@ -50,7 +50,8 @@ public:
     void show();
     void copyPart(Tree<Type>& tree, Node<Type>* source);
     void copyInternallyWithErasing(Node<Type>* erased);
-    
+    template<class T> friend std::ostream& operator<<(std::ostream&, Tree<T>&);
+
 };
 
 
@@ -166,15 +167,14 @@ template<class Type> Node<Type>* Tree<Type>::find(const Type& soughtItem)
             return tempNode;
         }
 }
-
-template<class Type> void Tree<Type>::show(Node<Type>* nodeToShow)
+template<class Type> void Tree<Type>::show(Node<Type>* NodeToShow)
 {
     int tempWidth = 0;
-    int nesting = Tree<Type>::nesting(nodeToShow);
+    int nest = nesting(root);
     std::vector<Node<Type>*> gggg, hhhh;
     gggg.push_back(root);
-    for(int i = 0; i < nesting; i++){
-        tempWidth = pow(2, nesting - i) / 2;
+    for(int i = 0; i < nest; i++){
+        tempWidth = pow(2, nest - i) / 2;
         for(unsigned i = 0; i < gggg.size(); i++){
             if(gggg[i] == NULL){
                 std::cout << std::setw(tempWidth) << "-" ; 
@@ -260,6 +260,4 @@ template<class Type> bool Tree<Type>::Iterator::Iterator::operator!=(Tree<Type>:
 
 
 #endif
-
-
 

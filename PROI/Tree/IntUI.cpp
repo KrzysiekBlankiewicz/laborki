@@ -1,6 +1,9 @@
+#ifndef INT
+#define INT
 
 #include "Tree.h"
 #include <iostream>
+#include "pomocnicze.h"
 
 using namespace std;
 
@@ -9,9 +12,11 @@ const int ZEROINASCII = 48;
 class IntUI
 {
     Tree<int>* drzewo;
+    Tree<int>::Iterator it;
 public:
     IntUI(){
         drzewo = new Tree<int>;
+        it = drzewo->begin();
     }
     ~IntUI(){
         delete drzewo;
@@ -42,6 +47,18 @@ public:
                 else if(contin == "wyczysc_drzewo"){
                     czysc();
                 }
+                else if(contin == "pokaz_it"){
+                    cout << *it << endl;
+                }
+                else if(contin == "it++"){
+                    it++;
+                }
+                else if(contin == "++it"){
+                    ++it;
+                }
+                else if(contin == "--it"){
+                    --it;
+                }
                 else cout << "Bledna instrukcja, ale..." << endl;
             }
             catch(Exept& e){
@@ -63,7 +80,10 @@ private:
                 cout << "	znajdz_element	wyświetlić ścieżkę do elementu" << endl;
                 cout << "	pokaz_drzewo	wyswietlić całe drzewo" << endl;
                 cout << "	wyczysc_drzewo	usunąć wszystkie elementy z drzewa" << endl;
-                //cout << "	zapisz_drzewo	zapisac ostatni zakup do pliku" << endl;
+                cout << "	pokaz_it	    wyświetlić element wskazywany przez it" << endl;
+                cout << "	++it	        przesunąć it na jego lewego 'syna'" << endl;
+                cout << "	it++	        przesunąć it na jego prawego 'syna'" << endl;
+                cout << "	--it	        przesunąć it na jego 'ojca'" << endl;
                 cout << "-----------------------------------------------------" << endl;
     }
 
@@ -80,7 +100,8 @@ private:
         drzewo->erase(askForInt());
     }
     void pokaz(){
-        drzewo->show();
+        //drzewo->show();
+        cout << *drzewo;
     }
     void czysc(){
         drzewo->clear();
@@ -108,6 +129,7 @@ private:
     }
 };
 
+#endif
 /*using namespace std;
 #include <string>
 #include <iostream>

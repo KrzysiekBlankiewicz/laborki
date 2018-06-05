@@ -5,14 +5,19 @@ using namespace std;
 #include "Tree.h"
 #include "Node.h"
 #include "IntUI.cpp"
-
+#include "pomocnicze.h"
 
 int main()
 {
+    Tree<int> drzewko;
+    drzewko.insert(4);
+    //drzewko.show();
+    //cout << drzewko;
     IntUI oby_zadzialalo_w_domu_dzialalo_musi_dzialac;
     oby_zadzialalo_w_domu_dzialalo_musi_dzialac.startProgram();
     return 0;
 }
+
 
     /*int a = 3;
     int* x = new int(3);
@@ -36,5 +41,5 @@ int main()
         it = drzewo.begin();
     }
     catch(Exept& x){cout << endl << x.what() << endl;} */
-s
+
 
