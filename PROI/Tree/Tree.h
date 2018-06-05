@@ -228,22 +228,26 @@ template<class Type> Tree<Type>::Iterator::Iterator()
 template<class Type> Tree<Type>::Iterator::Iterator(Node<Type>* x): pointed(x) {}
 template<class Type> Type Tree<Type>::Iterator::operator*()
 {
+    if(pointed == NULL) throw Exept("operator wskazuje na NULL");
     return pointed->getItem();
 }
 template<class Type> typename Tree<Type>::Iterator Tree<Type>::Iterator::Iterator::operator++()
 {
     if(pointed == NULL) throw Exept("operator wskazuje na NULL");
-    return Tree<Type>::Iterator(pointed->getLeft());
+    *this = Tree<Type>::Iterator(pointed->getLeft());
+    return *this;
 }
 template<class Type> typename Tree<Type>::Iterator Tree<Type>::Iterator::Iterator::operator++(int x)
 {
     if(pointed == NULL) throw Exept("operator wskazuje na NULL");
-    return Tree<Type>::Iterator(pointed->getRight());
+    *this = Tree<Type>::Iterator(pointed->getRight());
+    return *this;
 }
 template<class Type> typename Tree<Type>::Iterator Tree<Type>::Iterator::Iterator::operator--()
 {
     if(pointed == NULL) throw Exept("operator wskazuje na NULL");
-    return Tree<Type>::Iterator(pointed->getUp());
+    *this = Tree<Type>::Iterator(pointed->getUp());
+    return *this;
 }
 template<class Type> bool Tree<Type>::Iterator::Iterator::operator==(Tree<Type>::Iterator other)
 {
