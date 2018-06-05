@@ -93,6 +93,8 @@
     </Configuration>
   </Settings>
   <VirtualDirectory Name="src">
+    <File Name="../../shopping/codelite/shopping/Drzewa/pomocnicze.h"/>
+    <File Name="../../shopping/codelite/shopping/Drzewa/pomocnicze.cpp"/>
     <File Name="../../shopping/codelite/shopping/Drzewa/IntUI.cpp" ExcludeProjConfig=""/>
     <File Name="../../shopping/codelite/shopping/Drzewa/IntUI.h"/>
     <File Name="../../shopping/codelite/shopping/Drzewa/exeptions.cpp"/>

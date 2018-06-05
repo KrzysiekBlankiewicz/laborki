@@ -1,1 +1,1 @@
-./Debug/up_up_shopping_codelite_shopping_Drzewa_IntUI.cpp.o ./Debug/up_up_shopping_codelite_shopping_Drzewa_main.cpp.o ./Debug/up_up_shopping_codelite_shopping_Drzewa_exeptions.cpp.o ./Debug/up_up_shopping_codelite_shopping_Drzewa_Iterator.cpp.o
+./Debug/up_up_shopping_codelite_shopping_Drzewa_pomocnicze.cpp.o ./Debug/up_up_shopping_codelite_shopping_Drzewa_IntUI.cpp.o ./Debug/up_up_shopping_codelite_shopping_Drzewa_main.cpp.o ./Debug/up_up_shopping_codelite_shopping_Drzewa_Iterator.cpp.o ./Debug/up_up_shopping_codelite_shopping_Drzewa_exeptions.cpp.o

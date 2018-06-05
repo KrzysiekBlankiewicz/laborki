@@ -13,7 +13,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=krzys
-Date                   :=05/06/18
+Date                   :=06/06/18
 CodeLitePath           :=/home/user/.codelite
 LinkerName             :=g++
 SharedObjectLinkerName :=g++ -shared -fPIC
@@ -59,7 +59,7 @@ AS       := as
 ##
 ## User defined environment variables
 ##
-Objects0=$(IntermediateDirectory)/up_up_shopping_codelite_shopping_Drzewa_IntUI.cpp$(ObjectSuffix) $(IntermediateDirectory)/up_up_shopping_codelite_shopping_Drzewa_main.cpp$(ObjectSuffix) $(IntermediateDirectory)/up_up_shopping_codelite_shopping_Drzewa_exeptions.cpp$(ObjectSuffix) $(IntermediateDirectory)/up_up_shopping_codelite_shopping_Drzewa_Iterator.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/up_up_shopping_codelite_shopping_Drzewa_pomocnicze.cpp$(ObjectSuffix) $(IntermediateDirectory)/up_up_shopping_codelite_shopping_Drzewa_IntUI.cpp$(ObjectSuffix) $(IntermediateDirectory)/up_up_shopping_codelite_shopping_Drzewa_main.cpp$(ObjectSuffix) $(IntermediateDirectory)/up_up_shopping_codelite_shopping_Drzewa_Iterator.cpp$(ObjectSuffix) $(IntermediateDirectory)/up_up_shopping_codelite_shopping_Drzewa_exeptions.cpp$(ObjectSuffix) 
 
 
 
@@ -90,6 +90,14 @@ PreBuild:
 ##
 ## Objects
 ##
+$(IntermediateDirectory)/up_up_shopping_codelite_shopping_Drzewa_pomocnicze.cpp$(ObjectSuffix): ../../shopping/codelite/shopping/Drzewa/pomocnicze.cpp $(IntermediateDirectory)/up_up_shopping_codelite_shopping_Drzewa_pomocnicze.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/user/Dokumenty/programowanie/laborki/PROI/shopping/codelite/shopping/Drzewa/pomocnicze.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/up_up_shopping_codelite_shopping_Drzewa_pomocnicze.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/up_up_shopping_codelite_shopping_Drzewa_pomocnicze.cpp$(DependSuffix): ../../shopping/codelite/shopping/Drzewa/pomocnicze.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/up_up_shopping_codelite_shopping_Drzewa_pomocnicze.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/up_up_shopping_codelite_shopping_Drzewa_pomocnicze.cpp$(DependSuffix) -MM ../../shopping/codelite/shopping/Drzewa/pomocnicze.cpp
+
+$(IntermediateDirectory)/up_up_shopping_codelite_shopping_Drzewa_pomocnicze.cpp$(PreprocessSuffix): ../../shopping/codelite/shopping/Drzewa/pomocnicze.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/up_up_shopping_codelite_shopping_Drzewa_pomocnicze.cpp$(PreprocessSuffix) ../../shopping/codelite/shopping/Drzewa/pomocnicze.cpp
+
 $(IntermediateDirectory)/up_up_shopping_codelite_shopping_Drzewa_IntUI.cpp$(ObjectSuffix): ../../shopping/codelite/shopping/Drzewa/IntUI.cpp $(IntermediateDirectory)/up_up_shopping_codelite_shopping_Drzewa_IntUI.cpp$(DependSuffix)
 	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/user/Dokumenty/programowanie/laborki/PROI/shopping/codelite/shopping/Drzewa/IntUI.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/up_up_shopping_codelite_shopping_Drzewa_IntUI.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/up_up_shopping_codelite_shopping_Drzewa_IntUI.cpp$(DependSuffix): ../../shopping/codelite/shopping/Drzewa/IntUI.cpp
@@ -106,14 +114,6 @@ $(IntermediateDirectory)/up_up_shopping_codelite_shopping_Drzewa_main.cpp$(Depen
 $(IntermediateDirectory)/up_up_shopping_codelite_shopping_Drzewa_main.cpp$(PreprocessSuffix): ../../shopping/codelite/shopping/Drzewa/main.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/up_up_shopping_codelite_shopping_Drzewa_main.cpp$(PreprocessSuffix) ../../shopping/codelite/shopping/Drzewa/main.cpp
 
-$(IntermediateDirectory)/up_up_shopping_codelite_shopping_Drzewa_exeptions.cpp$(ObjectSuffix): ../../shopping/codelite/shopping/Drzewa/exeptions.cpp $(IntermediateDirectory)/up_up_shopping_codelite_shopping_Drzewa_exeptions.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/user/Dokumenty/programowanie/laborki/PROI/shopping/codelite/shopping/Drzewa/exeptions.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/up_up_shopping_codelite_shopping_Drzewa_exeptions.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/up_up_shopping_codelite_shopping_Drzewa_exeptions.cpp$(DependSuffix): ../../shopping/codelite/shopping/Drzewa/exeptions.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/up_up_shopping_codelite_shopping_Drzewa_exeptions.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/up_up_shopping_codelite_shopping_Drzewa_exeptions.cpp$(DependSuffix) -MM ../../shopping/codelite/shopping/Drzewa/exeptions.cpp
-
-$(IntermediateDirectory)/up_up_shopping_codelite_shopping_Drzewa_exeptions.cpp$(PreprocessSuffix): ../../shopping/codelite/shopping/Drzewa/exeptions.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/up_up_shopping_codelite_shopping_Drzewa_exeptions.cpp$(PreprocessSuffix) ../../shopping/codelite/shopping/Drzewa/exeptions.cpp
-
 $(IntermediateDirectory)/up_up_shopping_codelite_shopping_Drzewa_Iterator.cpp$(ObjectSuffix): ../../shopping/codelite/shopping/Drzewa/Iterator.cpp $(IntermediateDirectory)/up_up_shopping_codelite_shopping_Drzewa_Iterator.cpp$(DependSuffix)
 	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/user/Dokumenty/programowanie/laborki/PROI/shopping/codelite/shopping/Drzewa/Iterator.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/up_up_shopping_codelite_shopping_Drzewa_Iterator.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/up_up_shopping_codelite_shopping_Drzewa_Iterator.cpp$(DependSuffix): ../../shopping/codelite/shopping/Drzewa/Iterator.cpp
@@ -121,6 +121,14 @@ $(IntermediateDirectory)/up_up_shopping_codelite_shopping_Drzewa_Iterator.cpp$(D
 
 $(IntermediateDirectory)/up_up_shopping_codelite_shopping_Drzewa_Iterator.cpp$(PreprocessSuffix): ../../shopping/codelite/shopping/Drzewa/Iterator.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/up_up_shopping_codelite_shopping_Drzewa_Iterator.cpp$(PreprocessSuffix) ../../shopping/codelite/shopping/Drzewa/Iterator.cpp
+
+$(IntermediateDirectory)/up_up_shopping_codelite_shopping_Drzewa_exeptions.cpp$(ObjectSuffix): ../../shopping/codelite/shopping/Drzewa/exeptions.cpp $(IntermediateDirectory)/up_up_shopping_codelite_shopping_Drzewa_exeptions.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/user/Dokumenty/programowanie/laborki/PROI/shopping/codelite/shopping/Drzewa/exeptions.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/up_up_shopping_codelite_shopping_Drzewa_exeptions.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/up_up_shopping_codelite_shopping_Drzewa_exeptions.cpp$(DependSuffix): ../../shopping/codelite/shopping/Drzewa/exeptions.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/up_up_shopping_codelite_shopping_Drzewa_exeptions.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/up_up_shopping_codelite_shopping_Drzewa_exeptions.cpp$(DependSuffix) -MM ../../shopping/codelite/shopping/Drzewa/exeptions.cpp
+
+$(IntermediateDirectory)/up_up_shopping_codelite_shopping_Drzewa_exeptions.cpp$(PreprocessSuffix): ../../shopping/codelite/shopping/Drzewa/exeptions.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/up_up_shopping_codelite_shopping_Drzewa_exeptions.cpp$(PreprocessSuffix) ../../shopping/codelite/shopping/Drzewa/exeptions.cpp
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)
