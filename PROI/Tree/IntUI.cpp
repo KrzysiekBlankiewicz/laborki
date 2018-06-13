@@ -1,5 +1,3 @@
-#ifndef INT
-#define INT
 
 #include "Tree.h"
 #include <iostream>
@@ -8,6 +6,7 @@
 using namespace std;
 
 const int ZEROINASCII = 48;
+const int NINEINASCII = 57;
 
 class IntUI
 {
@@ -16,7 +15,6 @@ class IntUI
 public:
     IntUI(){
         drzewo = new Tree<int>;
-        it = drzewo->begin();
     }
     ~IntUI(){
         delete drzewo;
@@ -38,14 +36,14 @@ public:
                 else if(contin == "usun_element"){
                     usun();
                 }
-                else if(contin == "znajdz_element"){
-                    znajdz();
-                }
                 else if(contin == "pokaz_drzewo"){
                     pokaz();
                 }
                 else if(contin == "wyczysc_drzewo"){
                     czysc();
+                }
+                else if(contin == "it"){
+                    it = drzewo->begin();
                 }
                 else if(contin == "pokaz_it"){
                     cout << *it << endl;
@@ -77,7 +75,6 @@ private:
                 cout << "	dodaj_element	dodać element do drzea" << endl;
                 cout << "	dodaj_ciag	    dodać wiele elementów" << endl;
                 cout << "	usun_element	usunąć element z drzewa" << endl;
-                cout << "	znajdz_element	wyświetlić ścieżkę do elementu" << endl;
                 cout << "	pokaz_drzewo	wyswietlić całe drzewo" << endl;
                 cout << "	wyczysc_drzewo	usunąć wszystkie elementy z drzewa" << endl;
                 cout << "	pokaz_it	    wyświetlić element wskazywany przez it" << endl;
@@ -93,7 +90,8 @@ private:
     void dodajCiag(){
         string s = askForString();
         for(unsigned i = 0; i < s.length(); i++){
-            drzewo->insert((int)s[i] - ZEROINASCII);
+            if((int)s[i] >= ZEROINASCII && (int)s[i] <= NINEINASCII) //!!!!!!!!!!!!!!!1
+                drzewo->insert((int)s[i] - ZEROINASCII);
         }
     }
     void usun(){
@@ -105,9 +103,6 @@ private:
     }
     void czysc(){
         drzewo->clear();
-    }
-    void znajdz(){
-        drzewo->find(askForInt());
     }
     int askForInt(){
         int x;
@@ -129,7 +124,6 @@ private:
     }
 };
 
-#endif
 /*using namespace std;
 #include <string>
 #include <iostream>
