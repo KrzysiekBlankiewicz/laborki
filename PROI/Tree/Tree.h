@@ -20,6 +20,7 @@ public:
     
     class Iterator{
         Node<Type>* pointed;
+        int nested;
     public:
         Iterator();
         Iterator(Node<Type>* x);
@@ -33,22 +34,21 @@ public:
     
     Iterator begin();
     
-    bool empty();
-    int size();
+    bool empty() const;
+    int size() const;
     
     void insert(const Type& addedItem);
     void erase(const Type& removedItem);
     void clear();
     // swap
     
-    Node<Type>* find(const Type& soughtItem);
     int count();
-    int nesting(Node<Type>* triedNode);
-    int nesting();
+    int nesting(Node<Type>* triedNode) const;
+    int nesting() const;
     
-    void show(Node<Type>* nodeToShow);
-    void show();
-    void copyPart(Tree<Type>& tree, Node<Type>* source);
+    void show(Node<Type>* nodeToShow) const;
+    void show() const;
+    void copyPart(Tree<Type>& tree, Node<Type>* source) const;
     void copyInternallyWithErasing(Node<Type>* erased);
     template<class T> friend std::ostream& operator<<(std::ostream&, Tree<T>&);
 
@@ -65,20 +65,20 @@ template <class Type>Tree<Type>::~Tree(){
     delete root;
 }
 
-template<class Type> bool Tree<Type>::empty(){
+template<class Type> bool Tree<Type>::empty() const{
     if(root == NULL) return true;
 }
 
-template<class Type> int Tree<Type>::size(){
+template<class Type> int Tree<Type>::size() const{
     return mySize;
 }
 
-template<class Type> int Tree<Type>::nesting()
+template<class Type> int Tree<Type>::nesting() const
 {
     return nesting(root);
 }
 
-template<class Type> int Tree<Type>::nesting(Node<Type>* triedNode)
+template<class Type> int Tree<Type>::nesting(Node<Type>* triedNode) const
 {
     if(triedNode == NULL) return 0;
     return std::max(nesting(triedNode->getLeft()), nesting(triedNode->getRight())) + 1;
@@ -122,24 +122,35 @@ template<class Type> void Tree<Type>::insert(const Type& addedItem)
 }
 template<class Type> void Tree<Type>::erase(const Type& removedItem)
 {
-    int x = 0;
+    int ISLEFT = 2;
     Node<Type>* tempNode=root;
     while(1){
         if(tempNode == NULL) throw Exept("nima");
         if(removedItem > tempNode->getItem()){
-            x = 1;
+            ISLEFT = 0; //!!!!!!!!!!!!!!!!!!!!!
             tempNode = tempNode->getRight();
         }
         else if(removedItem < tempNode->getItem()){
-            x = 2;
+            ISLEFT = 1;  //!!!!!!!!!!!!!!!!!!!!
             tempNode = tempNode->getLeft();
         }
         else if(removedItem == tempNode->getItem()){
-            if(x == 1) tempNode->getUp()->setRight(NULL);
-            else if(x == 2) tempNode->getUp()->setLeft(NULL);
-            //else throw("costam");
-            copyInternallyWithErasing(tempNode);
-            return;
+            if(tempNode != root){
+                if(ISLEFT == 0) tempNode->getUp()->setRight(NULL);
+                else if(ISLEFT == 1) tempNode->getUp()->setLeft(NULL);
+                copyInternallyWithErasing(tempNode);
+                return;
+            }
+            else{
+                Tree<Type> tempTree1, tempTree2;
+                copyPart(tempTree1, tempNode->getLeft());
+                copyPart(tempTree2, tempNode->getRight());
+                delete tempNode;
+                root = NULL;
+                copyPart(*this, tempTree1.root);
+                copyPart(*this, tempTree2.root);
+                return;
+            }
         }
     }
 }
@@ -148,26 +159,8 @@ template<class Type> void Tree<Type>::clear()
     delete root;
 }
 
-template<class Type> Node<Type>* Tree<Type>::find(const Type& soughtItem)
-{
-    Node<Type>* tempNode = root;
-    if(soughtItem > tempNode->getItem()){
-            tempNode = tempNode->getRight();
-            if(tempNode == NULL){
-                throw Exept("nima");
-            }
-        }
-        else if(soughtItem < tempNode->getItem()){
-            tempNode = tempNode->getLeft();
-            if(tempNode == NULL){ 
-                throw Exept("nima");
-            }
-        }
-        else if(soughtItem == tempNode->getItem()){
-            return tempNode;
-        }
-}
-template<class Type> void Tree<Type>::show(Node<Type>* NodeToShow)
+
+template<class Type> void Tree<Type>::show(Node<Type>* NodeToShow) const
 {
     int tempWidth = 0;
     int nest = nesting(root);
@@ -193,12 +186,12 @@ template<class Type> void Tree<Type>::show(Node<Type>* NodeToShow)
         hhhh.clear();
     }
 }
-template<class Type> void Tree<Type>::show()
+template<class Type> void Tree<Type>::show() const
 {
     show(root);
 }
 
-template<class Type> void Tree<Type>::copyPart(Tree<Type>& tree, Node<Type>* source)
+template<class Type> void Tree<Type>::copyPart(Tree<Type>& tree, Node<Type>* source) const
 {
     if(source == NULL) return;
     tree.insert(source->getItem());
@@ -216,7 +209,13 @@ template<class Type> void Tree<Type>::copyInternallyWithErasing(Node<Type>* eras
 
 template<class Type> typename Tree<Type>::Iterator Tree<Type>::begin()
 {
-    return Tree<Type>::Iterator(root);
+    Node<Type>* tempNode = root;
+    if(tempNode == NULL)
+        throw Exept("Iterator wskazuje na NULL");
+    while(tempNode->getLeft() != NULL)
+        tempNode = tempNode->getLeft();
+    Iterator x(tempNode);
+    return x;
 }
 ///////////////////////////////// Definicje iteratora ////////////////////////////
 
@@ -234,19 +233,21 @@ template<class Type> Type Tree<Type>::Iterator::operator*()
 template<class Type> typename Tree<Type>::Iterator Tree<Type>::Iterator::Iterator::operator++()
 {
     if(pointed == NULL) throw Exept("operator wskazuje na NULL");
-    *this = Tree<Type>::Iterator(pointed->getLeft());
+    pointed = pointed->find();
     return *this;
 }
 template<class Type> typename Tree<Type>::Iterator Tree<Type>::Iterator::Iterator::operator++(int x)
 {
     if(pointed == NULL) throw Exept("operator wskazuje na NULL");
-    *this = Tree<Type>::Iterator(pointed->getRight());
+    Iterator newIterator;
+    newIterator.pointed = pointed->find();
+    *this = newIterator;
     return *this;
 }
 template<class Type> typename Tree<Type>::Iterator Tree<Type>::Iterator::Iterator::operator--()
 {
     if(pointed == NULL) throw Exept("operator wskazuje na NULL");
-    *this = Tree<Type>::Iterator(pointed->getUp());
+    pointed = pointed->findRev();
     return *this;
 }
 template<class Type> bool Tree<Type>::Iterator::Iterator::operator==(Tree<Type>::Iterator other)
@@ -264,4 +265,3 @@ template<class Type> bool Tree<Type>::Iterator::Iterator::operator!=(Tree<Type>:
 
 
 #endif
-
