@@ -2,6 +2,7 @@
 #define NODE_H
 
 #include <iostream>
+#include "exeptions.h"
 
 template<class Type>
 class Node{
@@ -17,6 +18,10 @@ public:
     Node* getUp();
     Node<Type>* getRight();
     Node<Type>* getLeft();
+
+    Node<Type>* find();
+    Node<Type>* findRev();
+
     void setRight(Node<Type>* newRight);
     void setLeft(Node<Type>* newLeft);
     void setUp(Node<Type>* newUp);
@@ -111,6 +116,62 @@ template<class Type> bool Node<Type>::operator<=(Node other){
 template<class Type> bool Node<Type>::operator>=(Node other){
     if(item >= other.item) return true;
     else return false;
+}
+
+template<class Type> Node<Type>* Node<Type>::find()
+{
+    Node<Type>* tempNode = this;
+    if(getRight() != NULL){ //jeśli jest coś większego
+        tempNode = getRight();
+        while(tempNode->getLeft() != NULL){
+            tempNode = tempNode->getLeft();
+        }
+        return tempNode;
+    }
+    else if(getUp() != NULL && getUp()->getItem() > getItem()){ // jeśli chociaż ojciec jest większy
+        tempNode = getUp();
+        return tempNode;
+    }
+    else{ //wracaj w górę aż znajdziesz większego
+        Node<Type>* tempNode = this;
+        while((tempNode->getUp() != NULL) && tempNode->getUp()->getItem() < tempNode->getItem()){
+            tempNode = tempNode->getUp();
+        }
+        if(tempNode->getUp() != NULL && tempNode->getUp()->getItem() > tempNode->getItem())
+            tempNode = tempNode->getUp();
+        else
+            throw Exept("operator na NULL");
+    return tempNode;
+    
+    }
+}
+
+template<class Type> Node<Type>* Node<Type>::findRev()
+{
+    Node<Type>* tempNode = this;
+    if(getLeft() != NULL){ //jeśli jest coś większego
+        tempNode = getLeft();
+        while(tempNode->getRight() != NULL){
+            tempNode = tempNode->getRight();
+        }
+        return tempNode;
+    }
+    else if(getUp() != NULL && getUp()->getItem() < getItem()){ // jeśli chociaż ojciec jest większy
+        tempNode = getUp();
+        return tempNode;
+    }
+    else{ //wracaj w górę aż znajdziesz większego
+        Node<Type>* tempNode = this;
+        while((tempNode->getUp() != NULL) && tempNode->getUp()->getItem() > tempNode->getItem()){
+            tempNode = tempNode->getUp();
+        }
+        if(tempNode->getUp() != NULL && tempNode->getUp()->getItem() < tempNode->getItem())
+            tempNode = tempNode->getUp();
+        else
+            throw Exept("operator na NULL");
+    return tempNode;
+    
+    }
 }
 
 #endif
