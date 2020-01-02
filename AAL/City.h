@@ -12,7 +12,7 @@ private:
 	int lootValue;
 	int lootVolume;
 	std::vector<City*> edges;
-	bool border;
+	bool border = false;
 
 public:
 	City();

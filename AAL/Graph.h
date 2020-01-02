@@ -3,14 +3,23 @@
 #include<string>
 #include<utility>
 #include "City.h"
+#include "Path.h"
 
 class Graph
 {
-	std::vector<City*> nodes;
-	City* startingCity;
+	std::vector<City*> cities;
+	std::vector<City*> borderline;
+	City* startingCity = nullptr;
+
+	Path* bestPath = nullptr;
+
+	// pommocnicze
+	void addNode(City* newNode);
+	void setStartingCity(int id);
+
 public:
 	Graph();
 	~Graph();
-	void addNode(City* newNode);
 	void read(std::string fileName);
+
 };
