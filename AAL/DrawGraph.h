@@ -9,14 +9,17 @@ class DrawGraph
 private:
 	ALLEGRO_DISPLAY* display;
 	Graph* g;
-	//ALLEGRO_COLOR *green, *red, *blue;
+	ALLEGRO_COLOR green, red, blue;
+
+	bool drawNodesAndEdges();
+	bool show();
 public:
 	DrawGraph();
 	~DrawGraph();
-	DrawGraph(Graph* newG);
-	
+
+	void setG(Graph* newG);
+	void draw();
 	void initialization();
-	bool drawNodesAndEdges();
-	bool show();
+
 
 };

@@ -21,5 +21,6 @@ public:
 	Graph();
 	~Graph();
 	void read(std::string fileName);
-
+	City* getStartingCity();
+	std::vector<City*>* getCities();
 };

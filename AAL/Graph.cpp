@@ -33,8 +33,13 @@ void Graph::read(string fileName)										// dane z pliku
 	int robbersLocal;
 	int newX, newY, newValue, newVolume, newEdgeA, newEdgeB, border;
 
-	ifstream file;
-	file.open(fileName.c_str(), ios::in);
+	ifstream file(fileName);
+
+	if (!file.good())
+	{
+		cout << "jhycbsd" << endl;
+		return;
+	}
 
 	file >> amount;
 	for(int i = 0; i < amount; ++i)										// wczytaj info o miastach
@@ -61,4 +66,14 @@ void Graph::read(string fileName)										// dane z pliku
 	}
 
 	file.close();
+}
+
+City* Graph::getStartingCity()
+{
+	return startingCity;
+}
+
+std::vector<City*>* Graph::getCities()
+{
+	return &cities;
 }

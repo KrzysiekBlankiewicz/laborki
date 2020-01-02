@@ -4,25 +4,38 @@
 
 using namespace std;
 
+void DrawGraph::setG(Graph* newG)
+{
+	g = newG;
+}
+
+void DrawGraph::draw()
+{
+	if (g == nullptr || g->getCities()->size() == 0)
+		return;
+	drawNodesAndEdges();
+	show();
+}
+
 void DrawGraph::initialization()
 {
 	al_init();
 	al_init_primitives_addon();
-	display = al_create_display(600, 500);
-	/**green = al_map_rgb(0, 255, 0);
-	*red = al_map_rgb(255, 0, 0);
-	*blue = al_map_rgb(0, 0, 255);*/
+	display = al_create_display(800, 600);
+	green = al_map_rgb(0, 255, 0);
+	red = al_map_rgb(255, 0, 0);
+	blue = al_map_rgb(0, 0, 255);
 }
 
 bool DrawGraph::drawNodesAndEdges()
 {
 	vector<bool> visited;
-	City* whereIsDanny;
-	visited.resize(g->nodes.size(), false);
+	City* startingCity;
+	visited.resize(g->getCities()->size(), false);
 	for (auto i : visited)
 		i = false;
 
-	for (auto i: g->nodes)
+	for (auto i: *(g->getCities()))
 	{
 		al_draw_filled_circle(i->getXPosition(), i->getYPosition(), 10, al_map_rgb(255, 0, 0));
 		for (auto j : i->edges)
@@ -32,8 +45,8 @@ bool DrawGraph::drawNodesAndEdges()
 		}
 		visited[i->getId()] = true;
 	}
-	whereIsDanny = g->getDanny()->getPosition();
-	al_draw_filled_circle(whereIsDanny->getXPosition(), whereIsDanny->getYPosition(), 6, al_map_rgb(0, 255, 0));
+	startingCity = g->getStartingCity();
+	al_draw_filled_circle(startingCity->getXPosition(), startingCity->getYPosition(), 6, al_map_rgb(0, 255, 0));
 
 	/*for (auto j : g->edges)
 	{
@@ -61,10 +74,4 @@ DrawGraph::DrawGraph()
 DrawGraph::~DrawGraph()
 {
 	al_destroy_display(display);
-}
-
-DrawGraph::DrawGraph(Graph* newG)
-{
-	g = newG;
-	display = nullptr;
 }
