@@ -82,3 +82,8 @@ Path* Graph::getBestPath()
 {
 	return &bestPath;
 }
+
+std::vector<City*>* Graph::getBorderline()
+{
+	return &borderline;
+}

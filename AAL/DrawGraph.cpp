@@ -31,11 +31,11 @@ void DrawGraph::drawPath(Path* path)
 	show();
 }
 
-void DrawGraph::initialization()
+void DrawGraph::initialization(int w, int h)
 {
 	al_init();
 	al_init_primitives_addon();
-	display = al_create_display(800, 600);
+	display = al_create_display(w, h);
 	green = al_map_rgb(0, 255, 0);
 	red = al_map_rgb(255, 0, 0);
 	blue = al_map_rgb(0, 0, 255);
@@ -51,7 +51,10 @@ bool DrawGraph::drawNodesAndEdges()
 
 	for (auto i: *(g->getCities()))
 	{
-		al_draw_filled_circle(i->getXPosition(), i->getYPosition(), 10, al_map_rgb(255, 0, 0));
+		if(i->isOnBorder())
+			al_draw_filled_circle(i->getXPosition(), i->getYPosition(), 10, al_map_rgb(255, 0, 255));
+		else
+			al_draw_filled_circle(i->getXPosition(), i->getYPosition(), 10, al_map_rgb(255, 0, 0));
 		for (auto j : i->edges)
 		{
 			if(visited[j->getId()] == false)

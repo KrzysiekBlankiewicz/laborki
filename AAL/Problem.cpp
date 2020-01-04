@@ -1,5 +1,8 @@
 #include "Problem.h"
 #include <chrono>
+#include <fstream>
+#include <time.h>
+#include "allegro5/allegro.h"	// tylko do al_rest
 
 void Problem::prepare()
 {
@@ -7,7 +10,7 @@ void Problem::prepare()
 	solver.setG(&graph);
 
 	drawing.setG(&graph);
-	drawing.initialization();
+	drawing.initialization(screenWidth, screenHeight);
 }
 
 void Problem::run()
@@ -24,11 +27,43 @@ void Problem::run()
 
 	result = *graph.getBestPath();
 	drawing.drawPath(&result);
-
-	Sleep(1000);
+	
+	//TODO wywaliæ:
+	al_rest(5);
 }
 
 long int Problem::getDuration()
 {
 	return duration;
+}
+
+void Problem::generateData(int gSize, int density, double abroadFactor)
+{
+	density = density > maxDensity ? maxDensity : density;
+	gSize = gSize > maxGSize ? maxGSize : gSize;
+	srand(time(0));
+	int startingCity = rand() % (int)(gSize*(1 - abroadFactor));				//potrzebny kometarz
+	std::fstream file(sourceFileName, std::ios::out);
+	file << gSize << std::endl;
+	for (int i = 0; i < gSize; ++i)
+		file << rand() % screenWidth << " " << rand() % screenHeight << " " << 0 << " " << 0 << " " << (i < (gSize*(1 - abroadFactor)) ? 0 : 1) <<std::endl;		//potrzebny kometarz
+	file << startingCity << std::endl;
+	
+	for (int i = 0; i < gSize; ++i)
+	{
+		for (int j = i + 1; j < gSize; ++j)
+		{
+			if (rand() % 10 < density)
+				file << i << " " << j << std::endl;
+		}
+	}
+	file.close();
+}
+
+void Problem::test()
+{
+	generateData(10, 5, 0.2);
+	prepare();
+	drawing.draw();
+	Sleep(2000);
 }

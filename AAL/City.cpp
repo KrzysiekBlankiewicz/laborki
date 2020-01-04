@@ -81,5 +81,5 @@ double City::getDistance(City* targetCity)
 	yDistance = abs(yPosition - targetCity->getYPosition());
 
 	distance = sqrt(xDistance*xDistance + yDistance*yDistance);
-	return 0;
+	return distance;
 }

@@ -6,11 +6,11 @@
 int main()
 {
 	Problem problem;
+	problem.generateData(10, 3, 0.2);
 	problem.prepare();
 	problem.run();
-
 	std::cout << problem.getDuration() << std::endl;
-
+	
 	/*
 	std::ofstream file;
 	file.open("output.txt", std::fstream::out);

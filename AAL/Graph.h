@@ -24,4 +24,5 @@ public:
 	City* getStartingCity();
 	std::vector<City*>* getCities();
 	Path* getBestPath();
+	std::vector<City*>* getBorderline();
 };
