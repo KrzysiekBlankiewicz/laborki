@@ -49,6 +49,26 @@ int City::getLootVolume()
 	return lootVolume;
 }
 
+bool City::isNeighbour(City* potentialNeighbour)
+{
+	for (auto a : edges)
+		if (a == potentialNeighbour)
+		{
+			return true;
+		}
+	return false;
+}
+
+bool City::isOnBorder()
+{
+	return border;
+}
+
+std::vector<City*>* City::getEgdes()
+{
+	return &edges;
+}
+
 void City::addEdge(City* newNeighbour)
 {
 	edges.push_back(newNeighbour);

@@ -24,6 +24,9 @@ public:
 	std::string getName();
 	int getLootValue();
 	int getLootVolume();
+	bool isNeighbour(City* potentialNeighbour);
+	bool isOnBorder();
+	std::vector<City*>* getEgdes();
 	void addEdge(City* newNeighbour);
 
 	friend class DrawGraph;

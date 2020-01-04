@@ -4,6 +4,10 @@
 
 class Path
 {
-	std::vector<City*> path;
+	std::vector<City*> cities;
+public:
+	std::vector<City*>* getCities();
+	void addCity(City* newCity);			//TODO to powinien byæ bool
+	void popLastCity();
 };
 

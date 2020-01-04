@@ -77,3 +77,8 @@ std::vector<City*>* Graph::getCities()
 {
 	return &cities;
 }
+
+Path* Graph::getBestPath()
+{
+	return &bestPath;
+}

@@ -19,6 +19,7 @@ public:
 
 	void setG(Graph* newG);
 	void draw();
+	void drawPath(Path* path);
 	void initialization();
 
 

@@ -12,6 +12,7 @@ class Problem
 	Solver solver;
 	Path result;
 	DrawGraph drawing;
+	long int duration;
 
 public:
 	void prepare();

@@ -17,6 +17,20 @@ void DrawGraph::draw()
 	show();
 }
 
+void DrawGraph::drawPath(Path* path)
+{
+	std::vector<City*> cities = *(path->getCities());
+	int i = 0;
+	int j = 1;
+	while(j < cities.size())
+	{
+		al_draw_line(cities[i]->getXPosition(), cities[i]->getYPosition(), cities[j]->getXPosition(), cities[j]->getYPosition(), al_map_rgb(255, 155, 255), 5);
+		++i;
+		++j;
+	}
+	show();
+}
+
 void DrawGraph::initialization()
 {
 	al_init();
@@ -41,7 +55,7 @@ bool DrawGraph::drawNodesAndEdges()
 		for (auto j : i->edges)
 		{
 			if(visited[j->getId()] == false)
-			al_draw_line(i->getXPosition(), i->getYPosition(), j->getXPosition(), j->getYPosition(), al_map_rgb(0, 0, 255), 3);
+			al_draw_line(i->getXPosition(), i->getYPosition(), j->getXPosition(), j->getYPosition(), al_map_rgb(0, 0, 255), 5);
 		}
 		visited[i->getId()] = true;
 	}

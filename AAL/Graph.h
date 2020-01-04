@@ -11,7 +11,7 @@ class Graph
 	std::vector<City*> borderline;
 	City* startingCity = nullptr;
 
-	Path* bestPath = nullptr;
+	Path bestPath;
 
 	// pommocnicze
 	void addNode(City* newNode);
@@ -23,4 +23,5 @@ public:
 	void read(std::string fileName);
 	City* getStartingCity();
 	std::vector<City*>* getCities();
+	Path* getBestPath();
 };

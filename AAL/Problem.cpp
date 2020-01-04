@@ -13,4 +13,7 @@ void Problem::run()
 {
 	drawing.draw();
 	solver.findSolution();
+	result = *graph.getBestPath();
+	drawing.drawPath(&result);
+	Sleep(1000);
 }
