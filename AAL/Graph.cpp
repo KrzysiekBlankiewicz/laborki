@@ -37,7 +37,7 @@ void Graph::read(string fileName)										// dane z pliku
 
 	if (!file.good())
 	{
-		cout << "jhycbsd" << endl;
+		cout << "Nie uda³o siê otworzyæ pliku" << endl;
 		return;
 	}
 
@@ -46,10 +46,10 @@ void Graph::read(string fileName)										// dane z pliku
 	{
 		file >> newX >> newY >> newValue >> newVolume >> border;
 		if(border == 0)													// internal city
-			cities.push_back(new City(i, newX, newY, newValue, newVolume, false));		
+			cities.push_back(new City(i, newX, newY, newValue, newVolume, false));
 		else 
 		{																// city at border
-			City* newBorderCity = new City(i, newX, newY, newValue, newVolume, true);	
+			City* newBorderCity = new City(i, newX, newY, newValue, newVolume, true);
 			cities.push_back(newBorderCity);
 			borderline.push_back(newBorderCity);
 		}

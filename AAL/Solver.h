@@ -3,11 +3,12 @@
 
 class Solver
 {
+protected:
+
 	Graph* g;
 
-	void findShortestPaths(std::vector<Path>* shortestPaths);
-	void chooseBestPath(std::vector<Path>* shortestPaths);
-	bool DFS(City* currentCity, Path* currentPath, std::vector<bool> visitedCities);			// TODO nie kopiowaæ vectora
+	void virtual findShortestPaths(std::vector<Path>* shortestPaths) = 0;
+	void virtual chooseBestPath(std::vector<Path>* shortestPaths) = 0;
 public:
 	void setG(Graph* newG);
 	void findSolution();

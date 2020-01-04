@@ -28,6 +28,7 @@ public:
 	bool isOnBorder();
 	std::vector<City*>* getEgdes();
 	void addEdge(City* newNeighbour);
+	double getDistance(City* targetCity);
 
 	friend class DrawGraph;
 };

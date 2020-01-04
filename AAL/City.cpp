@@ -73,3 +73,13 @@ void City::addEdge(City* newNeighbour)
 {
 	edges.push_back(newNeighbour);
 }
+
+double City::getDistance(City* targetCity)
+{
+	double distance, xDistance, yDistance;
+	xDistance = abs(xPosition - targetCity->getXPosition());
+	yDistance = abs(yPosition - targetCity->getYPosition());
+
+	distance = sqrt(xDistance*xDistance + yDistance*yDistance);
+	return 0;
+}
