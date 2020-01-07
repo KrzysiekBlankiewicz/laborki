@@ -11,6 +11,7 @@ void Problem::prepare()
 
 	drawing.setG(&graph);
 	drawing.initialization(screenWidth, screenHeight);
+
 }
 
 void Problem::run()
@@ -39,25 +40,8 @@ long int Problem::getDuration()
 
 void Problem::generateData(int gSize, int density, double abroadFactor)
 {
-	density = density > maxDensity ? maxDensity : density;
-	gSize = gSize > maxGSize ? maxGSize : gSize;
-	srand(time(0));
-	int startingCity = rand() % (int)(gSize*(1 - abroadFactor));				//potrzebny kometarz
-	std::fstream file(sourceFileName, std::ios::out);
-	file << gSize << std::endl;
-	for (int i = 0; i < gSize; ++i)
-		file << rand() % screenWidth << " " << rand() % screenHeight << " " << 0 << " " << 0 << " " << (i < (gSize*(1 - abroadFactor)) ? 0 : 1) <<std::endl;		//potrzebny kometarz
-	file << startingCity << std::endl;
-	
-	for (int i = 0; i < gSize; ++i)
-	{
-		for (int j = i + 1; j < gSize; ++j)
-		{
-			if (rand() % 10 < density)
-				file << i << " " << j << std::endl;
-		}
-	}
-	file.close();
+	generator.initialize(screenWidth, screenHeight, sourceFileName);
+	generator.generateData(gSize, density, abroadFactor);
 }
 
 void Problem::test()

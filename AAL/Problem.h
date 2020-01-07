@@ -5,6 +5,7 @@
 #include "SolverALaAStar.h"
 #include "Path.h"
 #include "DrawGraph.h"
+#include "DataGenerator.h"
 #include <string>
 
 class Problem
@@ -12,9 +13,8 @@ class Problem
 	std::string sourceFileName = "C:/Users/Dell/source/repos/VS projects/Thief/Debug/data.txt";
 	int screenWidth = 800;
 	int screenHeight = 600;
-	int maxGSize = 100;
-	int maxDensity = 10;
 
+	DataGenerator generator;
 	Graph graph;
 	SolverALaAStar solver;
 	Path result;

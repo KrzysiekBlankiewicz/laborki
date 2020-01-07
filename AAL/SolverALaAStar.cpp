@@ -3,7 +3,7 @@
 #include <iostream>
 
 
-void SolverALaAStar::aLaStarAlgorithm(City* currentCity, std::set<City*>* possiblyNextCities, std::vector<int>* predecessorsTable, std::vector<int>* cityRank)
+void SolverALaAStar::findBorderCity(City* currentCity, std::set<City*>* possiblyNextCities, std::vector<int>* predecessorsTable, std::vector<int>* cityRank)
 {
 	if (currentCity == nullptr || currentCity->isOnBorder())
 	{
@@ -25,7 +25,7 @@ void SolverALaAStar::aLaStarAlgorithm(City* currentCity, std::set<City*>* possib
 
 	City* nextCity = closestToBorder(possiblyNextCities);
 
-	aLaStarAlgorithm(nextCity, possiblyNextCities, predecessorsTable, cityRank);
+	findBorderCity(nextCity, possiblyNextCities, predecessorsTable, cityRank);
 }
 
 City* SolverALaAStar::closestToBorder(std::set<City*>* possibleCities)
@@ -90,7 +90,7 @@ void SolverALaAStar::findShortestPaths(std::vector<Path>* shortestPaths)
 	cityRank[currentCity->getId()] = 0;
 
 	
-	aLaStarAlgorithm(currentCity, &possiblyNextCities, &predecessorsTable, &cityRank);
+	findBorderCity(currentCity, &possiblyNextCities, &predecessorsTable, &cityRank);		// algorytm a la A*
 	// TODO sprawdzaj czy algrytm siê nie wysypa³
 
 	reconstructPath(g->getBestPath(), &predecessorsTable);

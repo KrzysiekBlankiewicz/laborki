@@ -24,7 +24,7 @@ void DrawGraph::drawPath(Path* path)
 	int j = 1;
 	while(j < cities.size())
 	{
-		al_draw_line(cities[i]->getXPosition(), cities[i]->getYPosition(), cities[j]->getXPosition(), cities[j]->getYPosition(), al_map_rgb(255, 155, 255), 5);
+		al_draw_line(cities[i]->getXPosition(), cities[i]->getYPosition(), cities[j]->getXPosition(), cities[j]->getYPosition(), al_map_rgb(255, 155, 255), 1);
 		++i;
 		++j;
 	}
@@ -58,7 +58,7 @@ bool DrawGraph::drawNodesAndEdges()
 		for (auto j : i->edges)
 		{
 			if(visited[j->getId()] == false)
-			al_draw_line(i->getXPosition(), i->getYPosition(), j->getXPosition(), j->getYPosition(), al_map_rgb(0, 0, 255), 5);
+			al_draw_line(i->getXPosition(), i->getYPosition(), j->getXPosition(), j->getYPosition(), al_map_rgb(0, 0, 255), 1);
 		}
 		visited[i->getId()] = true;
 	}

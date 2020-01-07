@@ -5,8 +5,9 @@
 
 int main()
 {
+	
 	Problem problem;
-	problem.generateData(10, 3, 0.2);
+	problem.generateData(10, 5, 0.2);	// TODO argumenty z linii komend
 	problem.prepare();
 	problem.run();
 	std::cout << problem.getDuration() << std::endl;
