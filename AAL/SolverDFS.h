@@ -9,7 +9,8 @@ class SolverDFS : public Solver
 	std::queue<int>* mainQueue;
 	std::queue<int>* subQueue;
 	bool borderFound;
-	void DFS();			// TODO nie kopiowaæ vectora
+
+	void DFS();
 	void virtual findShortestPaths(std::vector<Path*>* shortestPaths);
 	void virtual chooseBestPath(std::vector<Path*>* shortestPaths);
 	Path* reconstructPath(int targetId);

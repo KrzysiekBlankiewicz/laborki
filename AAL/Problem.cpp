@@ -34,9 +34,13 @@ void Problem::run(bool allRoutes)
 	duration = std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count();
 
 
+	if (graph.getBestPath() == nullptr)
+		return;
+
 	result = *graph.getBestPath();	// TODO to powinno byæ docelowo tylko ³adniejsze
 	drawing.drawPath(&result);
 
+	// TODO dodaæ jakieœ wypluwanie wyniku
 	
 	//TODO wywaliæ:
 	al_rest(8);
@@ -47,14 +51,14 @@ long int Problem::getDuration()
 	return duration;
 }
 
-void Problem::generateData(int gSize, int density, double abroadFactor)
+void Problem::generateRandomData(int gSize, int density, double abroadFactor)
 {
 	generator.initialize(screenWidth, screenHeight, sourceFileName);
 	generator.generateRandomData(gSize, density, abroadFactor);
 }
 
-void Problem::test()		// TODO magiczne sta³e poni¿ej
+void Problem::generateNiceData(int gSize, double abroadFactor)
 {
 	generator.initialize(screenWidth, screenHeight, sourceFileName);
-	generator.generateNiceData(15, 1, 1);
+	generator.generateNiceData(gSize, abroadFactor);
 }

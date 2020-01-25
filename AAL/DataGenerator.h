@@ -10,6 +10,7 @@ class DataGenerator
 	int screenHeight = 600;
 	int maxGSize = 100;
 	int maxDensity = 10;
+	int longestPossibleRoad = 4;
 
 	std::vector<std::vector<MapSegment>> map;
 	
@@ -22,6 +23,6 @@ class DataGenerator
 public:
 	void initialize(int w, int h, std::string fileName);
 	void generateRandomData(int gSize, int density, double abroadFactor);
-	void generateNiceData(int gSize, int density, double abroadFactor);
+	void generateNiceData(int gSize, double abroadFactor);
 };
 

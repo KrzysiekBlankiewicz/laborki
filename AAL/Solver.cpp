@@ -10,6 +10,8 @@ void Solver::setG(Graph* newG)
 
 void Solver::findSolution()
 {
+	if (g->getBorderline()->empty())
+		return;
 	std::vector<Path*> shortestPaths;
 	findShortestPaths(&shortestPaths);
 	chooseBestPath(&shortestPaths);

@@ -25,6 +25,6 @@ public:
 	void prepare();
 	void run(bool allRoutes);
 	long int getDuration();
-	void generateData(int gSize, int density, double abroadFactor);
-	void test();
+	void generateRandomData(int gSize, int density, double abroadFactor);
+	void generateNiceData(int gSize, double abroadFactor);
 };

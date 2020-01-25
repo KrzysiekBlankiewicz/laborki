@@ -1,5 +1,4 @@
 #include "SolverDFS.h"
-#include <iostream>			//TODO wywaliæ
 
 void SolverDFS::DFS()
 {
@@ -78,7 +77,6 @@ Path* SolverDFS::reconstructPath(int targetId)
 	int tempId = targetId;
 	do
 	{
-		std::cout << tempId << " ";	// TODO wywal
 		tempVector.push_back(cities[tempId]);
 		tempId = predecessorsTable[tempId];
 	} while (tempId != -2);
@@ -87,7 +85,6 @@ Path* SolverDFS::reconstructPath(int targetId)
 	{
 		newPath->addCity(*i);
 	}
-	std::cout << std::endl;	// TODO wywal
 	return newPath;
 }
 

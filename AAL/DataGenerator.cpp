@@ -43,9 +43,9 @@ void DataGenerator::markBorderCities(int abroadFactor, int mapSize)
 					firstInRow = j;
 			}
 		}
-		if(firstInRow != -1 && firstInRow < abroadFactor)				//TODO komentarz + dlaczego nie <=
-			map[i][firstInRow].setBorder(true);
-		if(lastInRow != -1 && lastInRow >= mapSize - abroadFactor)		//TODO komentarz + dlaczego nie >
+		if(firstInRow != -1 && firstInRow < abroadFactor)				//abroadFactor oznacza ile kolumn jest zagranicznych
+			map[i][firstInRow].setBorder(true);							//	dla abroadFactor == 1, tylko 0 i ostatnia kolumna
+		if(lastInRow != -1 && lastInRow >= mapSize - abroadFactor)		//
 			map[i][lastInRow].setBorder(true);
 		firstInRow = lastInRow = -1;
 	}
@@ -53,7 +53,6 @@ void DataGenerator::markBorderCities(int abroadFactor, int mapSize)
 
 void DataGenerator::writeMapToFile(int mapSize)
 {
-	int longestPossibleRoad = mapSize / 4;					// TODO magiczna sta³a
 	int segmentHeight = screenHeight / mapSize;
 	int segmentWidth = screenWidth / mapSize;
 
@@ -69,13 +68,13 @@ void DataGenerator::writeMapToFile(int mapSize)
 				file << segmentWidth * j + rand() % segmentWidth << " ";
 				file << segmentHeight * i + rand() % segmentHeight << " ";
 				file << 0 << " " << 0 << " ";
-				file << map[i][j].getBorder() << std::endl;					// TODO potrzebny kometarz
+				file << map[i][j].getBorder() << std::endl;					// getBorder zwraca bool'a, który siê konwertuje na informacjê, czy miasto jest za granic¹ (1), czy nie (0)
 			}
-	file << startingCityId(mapSize) << std::endl;				// startingCity TODO mo¿e siê wylosowaæ graniczne
+	file << startingCityId(mapSize) << std::endl;
 
-	for (int i = 0; i < map.size(); ++i)				// TODO trzeba bardzo pokomentowaæ
-		for (int j = 0; j < map[i].size(); ++j)
-			if (map[i][j].isFull())
+	for (int i = 0; i < map.size(); ++i)				// potrójnie zagnie¿d¿ona pêtla wyznacza krawêdzie grafu
+		for (int j = 0; j < map[i].size(); ++j)			// miasto mo¿e byæ po³¹czone tylko z 4 s¹siednimi
+			if (map[i][j].isFull())						// s¹siednimi w sensie z s¹siednich segmentów
 			{
 				for (int k = i + 1; k < map.size(); ++k)
 				{
@@ -160,7 +159,7 @@ void DataGenerator::generateRandomData(int gSize, int density, double abroadFact
 	density = density > maxDensity ? maxDensity : density;
 	gSize = gSize > maxGSize ? maxGSize : gSize;
 	srand(time(0));
-	int startingCity = std::rand() % gSize;											//TODO potrzebny kometarz
+	int startingCity = std::rand() % gSize;											// starting City jest ca³kiem losowe...
 	std::fstream file(sourceFileName, std::ios::out);
 	file << gSize << std::endl;
 	
@@ -170,14 +169,14 @@ void DataGenerator::generateRandomData(int gSize, int density, double abroadFact
 		pointX = rand() % screenWidth;
 		pointY = rand() % screenHeight;
 			file << pointX << " " << pointY << " " << 0 << " " << 0 << " ";
-			if (i == startingCity)													//TODO potrzebny komentarz
+			if (i == startingCity)													//...dlatego upewniam siê tutaj, ¿e nie bêdzie ono za granic¹
 			{
 				file << 0 << std::endl;
 				continue;
 			}
 			if (pointX < screenWidth * abroadFactor || pointX > screenWidth * (1 - abroadFactor)
 				|| pointY < screenHeight * abroadFactor || pointY > screenHeight * (1 - abroadFactor))
-				file << 1 << std::endl;																	// TODO potrzebny kometarz
+				file << 1 << std::endl;																	// 1 oznacza zagranicê, jest wpisywana jeœli miasto jest w odleg³oœci abroadFactor od krawêdzi ekranu
 			else
 				file << 0 << std::endl;
 	}
@@ -194,7 +193,7 @@ void DataGenerator::generateRandomData(int gSize, int density, double abroadFact
 	file.close();
 }
 
-void DataGenerator::generateNiceData(int gSize, int density, double abroadFactor)
+void DataGenerator::generateNiceData(int gSize, double abroadFactor)
 {
 	srand(time(0));
 	fillMapWithCities(gSize);
