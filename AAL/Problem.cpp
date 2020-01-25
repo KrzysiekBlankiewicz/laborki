@@ -14,7 +14,7 @@ void Problem::prepare()
 
 }
 
-void Problem::run()
+void Problem::run(bool allRoutes)
 {
 	std::chrono::steady_clock::time_point begin;
 	std::chrono::steady_clock::time_point end;
@@ -22,12 +22,21 @@ void Problem::run()
 	drawing.draw();
 	
 	begin = std::chrono::steady_clock::now();
-	solver.findSolution();
+	if (allRoutes)
+	{
+		std::vector<Path*> paths = *(solver.findSolutionAndDrawAll());
+		for (auto a : paths)
+			drawing.drawPath(a);
+	}
+	else
+		solver.findSolution();
 	end = std::chrono::steady_clock::now();
 	duration = std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count();
 
-	result = *graph.getBestPath();
+
+	result = *graph.getBestPath();	// TODO to powinno byæ docelowo tylko ³adniejsze
 	drawing.drawPath(&result);
+
 	
 	//TODO wywaliæ:
 	al_rest(8);
@@ -44,8 +53,8 @@ void Problem::generateData(int gSize, int density, double abroadFactor)
 	generator.generateRandomData(gSize, density, abroadFactor);
 }
 
-void Problem::test()
+void Problem::test()		// TODO magiczne sta³e poni¿ej
 {
 	generator.initialize(screenWidth, screenHeight, sourceFileName);
-	generator.generateNiceData(10, 1, 1);
+	generator.generateNiceData(15, 1, 1);
 }

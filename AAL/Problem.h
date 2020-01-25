@@ -11,19 +11,19 @@
 class Problem
 {
 	std::string sourceFileName = "C:/Users/Dell/source/repos/VS projects/Thief/Debug/data.txt";
-	int screenWidth = 800;
-	int screenHeight = 600;
+	int screenWidth = 1100;
+	int screenHeight = 700;
 
 	DataGenerator generator;
 	Graph graph;
-	SolverALaAStar solver;
+	SolverDFS solver;
 	Path result;
 	DrawGraph drawing;
 	long int duration;
 
 public:
 	void prepare();
-	void run();
+	void run(bool allRoutes);
 	long int getDuration();
 	void generateData(int gSize, int density, double abroadFactor);
 	void test();

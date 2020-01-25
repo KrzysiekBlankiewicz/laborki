@@ -12,6 +12,7 @@ class Graph
 	City* startingCity = nullptr;
 
 	Path bestPath;
+	int maxLootVolume;
 
 	// pommocnicze
 	void addNode(City* newNode);
@@ -25,4 +26,7 @@ public:
 	std::vector<City*>* getCities();
 	Path* getBestPath();
 	std::vector<City*>* getBorderline();
+	int getMaxLootVolume();
+	void setMaxLootVolume(int newMax);
+	void setBestPath(Path newBest);
 };

@@ -87,3 +87,18 @@ std::vector<City*>* Graph::getBorderline()
 {
 	return &borderline;
 }
+
+int Graph::getMaxLootVolume()
+{
+	return maxLootVolume;
+}
+
+void Graph::setMaxLootVolume(int newMax)
+{
+	maxLootVolume = newMax;
+}
+
+void Graph::setBestPath(Path newBest)
+{
+	bestPath = newBest;
+}
