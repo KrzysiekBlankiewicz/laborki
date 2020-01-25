@@ -30,7 +30,7 @@ void Problem::run()
 	drawing.drawPath(&result);
 	
 	//TODO wywaliæ:
-	al_rest(5);
+	al_rest(8);
 }
 
 long int Problem::getDuration()
@@ -41,13 +41,11 @@ long int Problem::getDuration()
 void Problem::generateData(int gSize, int density, double abroadFactor)
 {
 	generator.initialize(screenWidth, screenHeight, sourceFileName);
-	generator.generateData(gSize, density, abroadFactor);
+	generator.generateRandomData(gSize, density, abroadFactor);
 }
 
 void Problem::test()
 {
-	generateData(10, 5, 0.2);
-	prepare();
-	drawing.draw();
-	Sleep(2000);
+	generator.initialize(screenWidth, screenHeight, sourceFileName);
+	generator.generateNiceData(10, 1, 1);
 }

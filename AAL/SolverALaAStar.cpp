@@ -5,6 +5,12 @@
 
 void SolverALaAStar::findBorderCity(City* currentCity, std::set<City*>* possiblyNextCities, std::vector<int>* predecessorsTable, std::vector<int>* cityRank)
 {
+	// TODO zmieniæ jka poni¿ej
+	// przekazywaæ poziom zagnie¿d¿enia
+	// jak znajdê granicê, to dokoñczyæ szukaj¹c wszerz "bez pog³êbiania"
+	// wrzucaæ wszystkie znalezione cele do vektora 
+	// potem oddtworzê œcie¿ki for each w vektorze
+
 	if (currentCity == nullptr || currentCity->isOnBorder())
 	{
 		targetCity = currentCity;

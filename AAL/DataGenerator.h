@@ -1,5 +1,7 @@
 #pragma once
 #include <string>
+#include <vector>
+#include "MapSegment.h"
 
 class DataGenerator
 {
@@ -8,8 +10,18 @@ class DataGenerator
 	int screenHeight = 600;
 	int maxGSize = 100;
 	int maxDensity = 10;
+
+	std::vector<std::vector<MapSegment>> map;
+	
+
+	void fillMapWithCities(int mapSize);
+	void markBorderCities(int abroadFactor, int mapSize);
+	void writeMapToFile(int mapSize);
+	int startingCityId(int mapSize);
+
 public:
 	void initialize(int w, int h, std::string fileName);
-	void generateData(int gSize, int density, double abroadFactor);
+	void generateRandomData(int gSize, int density, double abroadFactor);
+	void generateNiceData(int gSize, int density, double abroadFactor);
 };
 

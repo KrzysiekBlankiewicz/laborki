@@ -14,6 +14,7 @@ void DrawGraph::draw()
 	if (g == nullptr || g->getCities()->size() == 0)
 		return;
 	drawNodesAndEdges();
+	//drawSegments();
 	show();
 }
 
@@ -77,6 +78,15 @@ bool DrawGraph::show()
 {
 	al_flip_display();
 	return true;
+}
+
+void DrawGraph::drawSegments()
+{
+	for (int i = 0; i < 10; ++i)
+	{
+		al_draw_line(0, 60 * i, 800, 60 * i, al_map_rgb(255, 255, 255), 1);
+		al_draw_line(80 * i, 0, 80 * i, 600, al_map_rgb(255, 255, 255), 1);
+	}
 }
 
 DrawGraph::DrawGraph()

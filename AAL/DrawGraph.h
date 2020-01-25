@@ -20,5 +20,6 @@ public:
 	void setG(Graph* newG);
 	void draw();
 	void drawPath(Path* path);
+	void drawSegments();
 	void initialization(int width, int height);
 };
