@@ -17,12 +17,12 @@ class DataGenerator
 
 	void fillMapWithCities(int mapSize);
 	void markBorderCities(int abroadFactor, int mapSize);
-	void writeMapToFile(int mapSize);
+	void writeMapToFile(int mapSize, bool graphicMode);
 	int startingCityId(int mapSize);
 
 public:
 	void initialize(int w, int h, std::string fileName);
 	void generateRandomData(int gSize, int density, double abroadFactor);
-	void generateNiceData(int gSize, double abroadFactor);
+	void generateNiceData(int gSize, double abroadFactor, bool graphicMode);
 };
 

@@ -51,11 +51,20 @@ void DataGenerator::markBorderCities(int abroadFactor, int mapSize)
 	}
 }
 
-void DataGenerator::writeMapToFile(int mapSize)
+void DataGenerator::writeMapToFile(int mapSize, bool graphicMode)
 {
-	int segmentHeight = screenHeight / mapSize;
-	int segmentWidth = screenWidth / mapSize;
-
+	int segmentHeight;
+	int segmentWidth;
+	if (graphicMode)
+	{
+		segmentHeight = screenHeight / mapSize;
+		segmentWidth = screenWidth / mapSize;
+	}
+	else
+	{
+		segmentHeight = mapSize;
+		segmentWidth = mapSize;
+	}
 
 	std::fstream file(sourceFileName, std::ios::out);
 	
@@ -193,10 +202,10 @@ void DataGenerator::generateRandomData(int gSize, int density, double abroadFact
 	file.close();
 }
 
-void DataGenerator::generateNiceData(int gSize, double abroadFactor)
+void DataGenerator::generateNiceData(int gSize, double abroadFactor, bool graphicMode)
 {
 	srand(time(0));
 	fillMapWithCities(gSize);
 	markBorderCities(abroadFactor, gSize);
-	writeMapToFile(gSize);
+	writeMapToFile(gSize, graphicMode);
 }

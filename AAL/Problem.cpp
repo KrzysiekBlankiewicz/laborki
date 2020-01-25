@@ -1,6 +1,7 @@
 #include "Problem.h"
 #include <chrono>
 #include <fstream>
+#include <iostream>
 #include <time.h>
 #include "allegro5/allegro.h"	// tylko do al_rest
 
@@ -41,9 +42,7 @@ void Problem::run(bool allRoutes)
 	drawing.drawPath(&result);
 
 	// TODO dodaæ jakieœ wypluwanie wyniku
-	
-	//TODO wywaliæ:
-	al_rest(8);
+
 }
 
 long int Problem::getDuration()
@@ -57,8 +56,13 @@ void Problem::generateRandomData(int gSize, int density, double abroadFactor)
 	generator.generateRandomData(gSize, density, abroadFactor);
 }
 
-void Problem::generateNiceData(int gSize, double abroadFactor)
+void Problem::generateNiceData(int gSize, double abroadFactor, bool graphicMode)
 {
+	if (gSize > 100 && graphicMode)
+	{
+		std::cout << "Zbyt du¿y problem dla tryvu graficznego" << std::endl;
+		return;
+	}
 	generator.initialize(screenWidth, screenHeight, sourceFileName);
-	generator.generateNiceData(gSize, abroadFactor);
+	generator.generateNiceData(gSize, abroadFactor, graphicMode);
 }
