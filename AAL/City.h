@@ -8,11 +8,11 @@ private:
 	int id;
 	int xPosition;
 	int yPosition;
-	std::string name;
-	int lootValue;
+	std::string name;		// nie u¿ywane w tym momencie, ale mog³oby byæ przydatne przy ew. rozszerzaniu
+	int lootValue;			// bogactwo mo¿liwe do zrabowania
 	int lootVolume;
 	std::vector<City*> edges;
-	bool border = false;
+	bool border = false;	// czy miasto znajduje siê na granicy
 
 public:
 	City();
@@ -30,6 +30,6 @@ public:
 	void addEdge(City* newNeighbour);
 	double getDistance(City* targetCity);
 
-	friend class DrawGraph;
+	friend class DrawGraph;			// dla u³atwienia procesu wyœwietlania
 };
 

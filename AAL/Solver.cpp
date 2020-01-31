@@ -24,5 +24,6 @@ std::vector<Path*>* Solver::findSolutionAndDrawAll()
 {
 	std::vector<Path*>* shortestPaths = new std::vector<Path*>;
 	findShortestPaths(shortestPaths);
+	chooseBestPath(shortestPaths);
 	return shortestPaths;
 }

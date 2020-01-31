@@ -9,7 +9,7 @@ class DrawGraph
 private:
 	ALLEGRO_DISPLAY* display;
 	Graph* g;
-	ALLEGRO_COLOR green, red, blue;
+	ALLEGRO_COLOR green, red, blue, white, black, yellow, purple;
 
 	bool drawNodesAndEdges();
 	bool show();
@@ -20,6 +20,7 @@ public:
 	void setG(Graph* newG);
 	void draw();
 	void drawPath(Path* path);
+	void drawResult(Path* path);
 	void drawSegments();
 	void initialization(int width, int height);
 };

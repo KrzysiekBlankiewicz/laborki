@@ -2,7 +2,7 @@
 #include "Solver.h"
 #include <queue>
 
-class SolverDFS : public Solver
+class SolverBFS : public Solver
 {
 	std::vector<int> targets;
 	std::vector<int> predecessorsTable;
@@ -13,10 +13,11 @@ class SolverDFS : public Solver
 	void DFS();
 	void virtual findShortestPaths(std::vector<Path*>* shortestPaths);
 	void virtual chooseBestPath(std::vector<Path*>* shortestPaths);
+	void virtual chooseBestPathB(std::vector<Path*>* shortestPaths);
 	Path* reconstructPath(int targetId);
 	void initStructures();
 public:
-	SolverDFS();
-	~SolverDFS();
+	SolverBFS();
+	~SolverBFS();
 };
 

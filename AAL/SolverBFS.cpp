@@ -1,6 +1,6 @@
-#include "SolverDFS.h"
+#include "SolverBFS.h"
 
-void SolverDFS::DFS()
+void SolverBFS::DFS()
 {
 	if (!borderFound && mainQueue->empty())		// przeszuka³ kolejny poziom
 	{
@@ -27,26 +27,26 @@ void SolverDFS::DFS()
 			}
 		}
 	}
-	DFS();
+	
 	return;
 }
 
-void SolverDFS::findShortestPaths(std::vector<Path*>* shortestPaths)
+void SolverBFS::findShortestPaths(std::vector<Path*>* shortestPaths)
 {
 	initStructures();
 
 	mainQueue->push(g->getStartingCity()->getId());
 	predecessorsTable[g->getStartingCity()->getId()] = -2;
-	DFS();
+	while(!borderFound || !mainQueue->empty())
+		DFS();
 
 	for (auto a : targets)
 	{
 		shortestPaths->push_back(reconstructPath(a));
 	}
-	
 }
 
-void SolverDFS::chooseBestPath(std::vector<Path*>* shortestPaths)
+void SolverBFS::chooseBestPath(std::vector<Path*>* shortestPaths)
 {
 	int robbedSum = 0;
 	int maxSum = 0;
@@ -59,7 +59,7 @@ void SolverDFS::chooseBestPath(std::vector<Path*>* shortestPaths)
 			if(robbedSum < g->getMaxLootVolume())
 				robbedSum += b->getLootValue();
 		}
-		if (robbedSum > maxSum)
+		if (robbedSum >= maxSum)
 		{
 			maxSum = robbedSum;
 			maxPath = *a;
@@ -69,7 +69,12 @@ void SolverDFS::chooseBestPath(std::vector<Path*>* shortestPaths)
 	g->setBestPath(maxPath);
 }
 
-Path* SolverDFS::reconstructPath(int targetId)
+void SolverBFS::chooseBestPathB(std::vector<Path*>* shortestPaths)
+{
+	int x = 0;
+}
+
+Path* SolverBFS::reconstructPath(int targetId)
 {
 	Path* newPath = new Path();
 	std::vector<City*> tempVector;
@@ -88,20 +93,20 @@ Path* SolverDFS::reconstructPath(int targetId)
 	return newPath;
 }
 
-void SolverDFS::initStructures()
+void SolverBFS::initStructures()
 {
 	borderFound = false;
 	predecessorsTable.clear();
 	predecessorsTable.resize(g->getCities()->size(), -1);
 }
 
-SolverDFS::SolverDFS()
+SolverBFS::SolverBFS()
 {
 	mainQueue = new std::queue<int>;
 	subQueue = new std::queue<int>;
 }
 
-SolverDFS::~SolverDFS()
+SolverBFS::~SolverBFS()
 {
 	delete mainQueue;
 	delete subQueue;

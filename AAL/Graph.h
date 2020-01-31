@@ -8,11 +8,11 @@
 class Graph
 {
 	std::vector<City*> cities;
-	std::vector<City*> borderline;
-	City* startingCity = nullptr;
+	std::vector<City*> borderline;		// miasta znajduj¹ce siê na granicy
+	City* startingCity = nullptr;		//miasto, w którym wykryto z³odzeja
 
-	Path bestPath;
-	int maxLootVolume;
+	Path bestPath;						// wynik dzia³ania programu
+	int maxLootVolume;					// pojemnoœæ baga¿nika
 
 	// pommocnicze
 	void addNode(City* newNode);
